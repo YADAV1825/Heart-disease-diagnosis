@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Loader2, Heart, Activity, User, FileText, Download, RotateCcw, Moon, Sun } from "lucide-react";
-import { MedicalAnalysisRequest, MedicalAnalysisResponse } from "../../server/routes/gemini";
+import { MedicalAnalysisRequest, MedicalAnalysisResponse } from "@shared/api";
 
 export default function Index() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
