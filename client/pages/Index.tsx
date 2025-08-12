@@ -125,7 +125,7 @@ export default function Index() {
   };
 
   const generatePDF = async () => {
-    const { jsPDF } = await import('jspdf');
+    const { jsPDF } = await import("jspdf");
     const doc = new jsPDF();
 
     // Set font
@@ -152,7 +152,7 @@ export default function Index() {
       `Age: ${formData.age} years`,
       `Gender: ${formData.gender}`,
       `City: ${formData.city}`,
-      `Date: ${new Date().toLocaleDateString()}`
+      `Date: ${new Date().toLocaleDateString()}`,
     ];
 
     let yPosition = 70;
@@ -172,7 +172,8 @@ export default function Index() {
     yPosition += 25;
 
     splitText.forEach((line: string) => {
-      if (yPosition > 270) { // Create new page if needed
+      if (yPosition > 270) {
+        // Create new page if needed
         doc.addPage();
         yPosition = 20;
       }
@@ -191,7 +192,9 @@ export default function Index() {
     }
 
     // Save the PDF
-    doc.save(`${formData.name || 'Patient'}_SHD_Report_${new Date().toISOString().split('T')[0]}.pdf`);
+    doc.save(
+      `${formData.name || "Patient"}_SHD_Report_${new Date().toISOString().split("T")[0]}.pdf`,
+    );
   };
 
   const toggleTheme = () => {
