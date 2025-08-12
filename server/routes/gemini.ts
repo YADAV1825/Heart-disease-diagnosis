@@ -12,7 +12,9 @@ if (API_KEY) {
   genAI = new GoogleGenerativeAI(API_KEY);
   model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 } else {
-  console.warn("GEMINI_API_KEY environment variable is not set - AI features will use fallback");
+  console.warn(
+    "GEMINI_API_KEY environment variable is not set - AI features will use fallback",
+  );
 }
 
 function buildPrompt(data: MedicalAnalysisRequest): string {
@@ -193,7 +195,9 @@ export const handleMedicalAnalysis: RequestHandler = async (req, res) => {
         console.log("Falling back to sample analysis due to AI error");
       }
     } else {
-      console.log("Using fallback analysis - API key not available in environment");
+      console.log(
+        "Using fallback analysis - API key not available in environment",
+      );
     }
 
     // Fallback analysis if AI fails or API key missing
