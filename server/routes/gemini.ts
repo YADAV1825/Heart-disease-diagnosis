@@ -67,7 +67,7 @@ export const handleMedicalAnalysis: RequestHandler = async (req, res) => {
     if (!data.name || !data.age || !data.gender) {
       return res.status(400).json({
         success: false,
-        error: "Missing required fields: name, age, and gender are required."
+        error: "Missing required fields: name, age, and gender are required.",
       });
     }
 
@@ -78,7 +78,7 @@ export const handleMedicalAnalysis: RequestHandler = async (req, res) => {
 
     const response: MedicalAnalysisResponse = {
       success: true,
-      analysis: analysisText
+      analysis: analysisText,
     };
 
     res.json(response);
@@ -86,7 +86,7 @@ export const handleMedicalAnalysis: RequestHandler = async (req, res) => {
     console.error("Error in medical analysis:", error);
     res.status(500).json({
       success: false,
-      error: "Failed to analyze medical data. Please try again."
+      error: "Failed to analyze medical data. Please try again.",
     });
   }
 };

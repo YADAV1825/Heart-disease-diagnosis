@@ -3,16 +3,38 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Loader2, Heart, Activity, User, FileText, Download, RotateCcw, Moon, Sun } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Loader2,
+  Heart,
+  Activity,
+  User,
+  FileText,
+  Download,
+  RotateCcw,
+  Moon,
+  Sun,
+} from "lucide-react";
 import { MedicalAnalysisRequest, MedicalAnalysisResponse } from "@shared/api";
 
 export default function Index() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysis, setAnalysis] = useState<string>("");
   const [isDarkMode, setIsDarkMode] = useState(true);
-  
+
   // Form state
   const [formData, setFormData] = useState<MedicalAnalysisRequest>({
     name: "",
@@ -39,11 +61,11 @@ export default function Index() {
     palpitations: "",
     familyHistory: "",
     feeding: "",
-    symptoms: ""
+    symptoms: "",
   });
 
   const updateField = (field: keyof MedicalAnalysisRequest, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleAnalysis = async () => {
@@ -56,9 +78,9 @@ export default function Index() {
         },
         body: JSON.stringify(formData),
       });
-      
+
       const data: MedicalAnalysisResponse = await response.json();
-      
+
       if (data.success) {
         setAnalysis(data.analysis);
       } else {
@@ -97,7 +119,7 @@ export default function Index() {
       palpitations: "",
       familyHistory: "",
       feeding: "",
-      symptoms: ""
+      symptoms: "",
     });
     setAnalysis("");
   };
@@ -116,7 +138,7 @@ ${analysis}
 
 Generated on: ${new Date().toLocaleDateString()}
     `;
-    
+
     const blob = new Blob([content], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -130,16 +152,24 @@ Generated on: ${new Date().toLocaleDateString()}
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle('light');
+    document.documentElement.classList.toggle("light");
   };
 
   return (
-    <div className={`min-h-screen transition-all duration-500 ${isDarkMode ? '' : 'light'}`}>
+    <div
+      className={`min-h-screen transition-all duration-500 ${isDarkMode ? "" : "light"}`}
+    >
       {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-medical-blue/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute top-3/4 right-1/4 w-48 h-48 bg-medical-green/10 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/2 left-3/4 w-56 h-56 bg-medical-purple/10 rounded-full blur-3xl animate-float" style={{animationDelay: '4s'}}></div>
+        <div
+          className="absolute top-3/4 right-1/4 w-48 h-48 bg-medical-green/10 rounded-full blur-3xl animate-float"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-3/4 w-56 h-56 bg-medical-purple/10 rounded-full blur-3xl animate-float"
+          style={{ animationDelay: "4s" }}
+        ></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl">
@@ -153,17 +183,23 @@ Generated on: ${new Date().toLocaleDateString()}
               <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-medical-blue bg-clip-text text-transparent">
                 CardioAI Screening
               </h1>
-              <p className="text-muted-foreground">Advanced Structural Heart Disease Detection</p>
+              <p className="text-muted-foreground">
+                Advanced Structural Heart Disease Detection
+              </p>
             </div>
           </div>
-          
+
           <Button
             variant="outline"
             size="icon"
             onClick={toggleTheme}
             className="rounded-full border-primary/20 hover:bg-primary/10"
           >
-            {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            {isDarkMode ? (
+              <Sun className="w-4 h-4" />
+            ) : (
+              <Moon className="w-4 h-4" />
+            )}
           </Button>
         </div>
 
@@ -176,7 +212,9 @@ Generated on: ${new Date().toLocaleDateString()}
                   <User className="w-5 h-5 text-primary" />
                   Patient Information
                 </CardTitle>
-                <CardDescription>Complete medical screening form for AI analysis</CardDescription>
+                <CardDescription>
+                  Complete medical screening form for AI analysis
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-8">
                 {/* Basic Information Section */}
@@ -185,11 +223,15 @@ Generated on: ${new Date().toLocaleDateString()}
                     <div className="p-2 rounded-lg bg-primary/10">
                       <User className="w-5 h-5 text-primary" />
                     </div>
-                    <h3 className="text-xl font-semibold text-primary">Basic Information</h3>
+                    <h3 className="text-xl font-semibold text-primary">
+                      Basic Information
+                    </h3>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name" className="text-primary">Full Name *</Label>
+                      <Label htmlFor="name" className="text-primary">
+                        Full Name *
+                      </Label>
                       <Input
                         id="name"
                         value={formData.name}
@@ -199,7 +241,9 @@ Generated on: ${new Date().toLocaleDateString()}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="age" className="text-primary">Age *</Label>
+                      <Label htmlFor="age" className="text-primary">
+                        Age *
+                      </Label>
                       <Input
                         id="age"
                         type="number"
@@ -210,8 +254,13 @@ Generated on: ${new Date().toLocaleDateString()}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="gender" className="text-primary">Gender *</Label>
-                      <Select value={formData.gender} onValueChange={(value) => updateField("gender", value)}>
+                      <Label htmlFor="gender" className="text-primary">
+                        Gender *
+                      </Label>
+                      <Select
+                        value={formData.gender}
+                        onValueChange={(value) => updateField("gender", value)}
+                      >
                         <SelectTrigger className="bg-background/50 border-primary/20">
                           <SelectValue placeholder="Select gender" />
                         </SelectTrigger>
@@ -223,8 +272,15 @@ Generated on: ${new Date().toLocaleDateString()}
                       </Select>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="ageGroup" className="text-primary">Age Group</Label>
-                      <Select value={formData.ageGroup} onValueChange={(value) => updateField("ageGroup", value)}>
+                      <Label htmlFor="ageGroup" className="text-primary">
+                        Age Group
+                      </Label>
+                      <Select
+                        value={formData.ageGroup}
+                        onValueChange={(value) =>
+                          updateField("ageGroup", value)
+                        }
+                      >
                         <SelectTrigger className="bg-background/50 border-primary/20">
                           <SelectValue placeholder="Select age group" />
                         </SelectTrigger>
@@ -236,7 +292,9 @@ Generated on: ${new Date().toLocaleDateString()}
                       </Select>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="height" className="text-primary">Height (cm)</Label>
+                      <Label htmlFor="height" className="text-primary">
+                        Height (cm)
+                      </Label>
                       <Input
                         id="height"
                         type="number"
@@ -247,7 +305,9 @@ Generated on: ${new Date().toLocaleDateString()}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="weight" className="text-primary">Weight (kg)</Label>
+                      <Label htmlFor="weight" className="text-primary">
+                        Weight (kg)
+                      </Label>
                       <Input
                         id="weight"
                         type="number"
@@ -258,7 +318,9 @@ Generated on: ${new Date().toLocaleDateString()}
                       />
                     </div>
                     <div className="space-y-2 md:col-span-2">
-                      <Label htmlFor="city" className="text-primary">City</Label>
+                      <Label htmlFor="city" className="text-primary">
+                        City
+                      </Label>
                       <Input
                         id="city"
                         value={formData.city}
@@ -276,11 +338,15 @@ Generated on: ${new Date().toLocaleDateString()}
                     <div className="p-2 rounded-lg bg-medical-red/10">
                       <Activity className="w-5 h-5 text-medical-red" />
                     </div>
-                    <h3 className="text-xl font-semibold text-medical-red">Vital Signs</h3>
+                    <h3 className="text-xl font-semibold text-medical-red">
+                      Vital Signs
+                    </h3>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="bp" className="text-medical-red">Blood Pressure</Label>
+                      <Label htmlFor="bp" className="text-medical-red">
+                        Blood Pressure
+                      </Label>
                       <Input
                         id="bp"
                         value={formData.bp}
@@ -290,7 +356,9 @@ Generated on: ${new Date().toLocaleDateString()}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="hr" className="text-medical-red">Heart Rate (BPM)</Label>
+                      <Label htmlFor="hr" className="text-medical-red">
+                        Heart Rate (BPM)
+                      </Label>
                       <Input
                         id="hr"
                         type="number"
@@ -301,7 +369,9 @@ Generated on: ${new Date().toLocaleDateString()}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="spo2" className="text-medical-blue">SpO2 (%)</Label>
+                      <Label htmlFor="spo2" className="text-medical-blue">
+                        SpO2 (%)
+                      </Label>
                       <Input
                         id="spo2"
                         type="number"
@@ -312,11 +382,18 @@ Generated on: ${new Date().toLocaleDateString()}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="allergies" className="text-medical-orange">Allergies</Label>
+                      <Label
+                        htmlFor="allergies"
+                        className="text-medical-orange"
+                      >
+                        Allergies
+                      </Label>
                       <Input
                         id="allergies"
                         value={formData.allergies}
-                        onChange={(e) => updateField("allergies", e.target.value)}
+                        onChange={(e) =>
+                          updateField("allergies", e.target.value)
+                        }
                         className="bg-background/50 border-medical-orange/20 focus:border-medical-orange"
                         placeholder="None / List allergies"
                       />
@@ -330,7 +407,9 @@ Generated on: ${new Date().toLocaleDateString()}
                     <div className="p-2 rounded-lg bg-medical-purple/10">
                       <Heart className="w-5 h-5 text-medical-purple" />
                     </div>
-                    <h3 className="text-xl font-semibold text-medical-purple">Lifestyle & Medical History</h3>
+                    <h3 className="text-xl font-semibold text-medical-purple">
+                      Lifestyle & Medical History
+                    </h3>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {[
@@ -338,13 +417,20 @@ Generated on: ${new Date().toLocaleDateString()}
                       { key: "alcohol", label: "Alcohol" },
                       { key: "tobacco", label: "Tobacco" },
                       { key: "hypertensive", label: "Hypertensive Drugs" },
-                      { key: "diabetes", label: "Diabetes/High Sugar" }
+                      { key: "diabetes", label: "Diabetes/High Sugar" },
                     ].map(({ key, label }) => (
                       <div key={key} className="space-y-2">
-                        <Label htmlFor={key} className="text-medical-purple">{label}</Label>
+                        <Label htmlFor={key} className="text-medical-purple">
+                          {label}
+                        </Label>
                         <Select
                           value={formData[key as keyof MedicalAnalysisRequest]}
-                          onValueChange={(value) => updateField(key as keyof MedicalAnalysisRequest, value)}
+                          onValueChange={(value) =>
+                            updateField(
+                              key as keyof MedicalAnalysisRequest,
+                              value,
+                            )
+                          }
                         >
                           <SelectTrigger className="bg-background/50 border-medical-purple/20">
                             <SelectValue placeholder="Select Yes/No" />
@@ -365,7 +451,9 @@ Generated on: ${new Date().toLocaleDateString()}
                     <div className="p-2 rounded-lg bg-medical-green/10">
                       <FileText className="w-5 h-5 text-medical-green" />
                     </div>
-                    <h3 className="text-xl font-semibold text-medical-green">Symptoms Assessment</h3>
+                    <h3 className="text-xl font-semibold text-medical-green">
+                      Symptoms Assessment
+                    </h3>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     {[
@@ -376,13 +464,23 @@ Generated on: ${new Date().toLocaleDateString()}
                       { key: "syncope", label: "Syncope (Fainting)" },
                       { key: "palpitations", label: "Palpitations" },
                       { key: "familyHistory", label: "Family History of SHD" },
-                      { key: "feeding", label: "Feeding Issues (newborn only)" }
+                      {
+                        key: "feeding",
+                        label: "Feeding Issues (newborn only)",
+                      },
                     ].map(({ key, label }) => (
                       <div key={key} className="space-y-2">
-                        <Label htmlFor={key} className="text-medical-green">{label}</Label>
+                        <Label htmlFor={key} className="text-medical-green">
+                          {label}
+                        </Label>
                         <Select
                           value={formData[key as keyof MedicalAnalysisRequest]}
-                          onValueChange={(value) => updateField(key as keyof MedicalAnalysisRequest, value)}
+                          onValueChange={(value) =>
+                            updateField(
+                              key as keyof MedicalAnalysisRequest,
+                              value,
+                            )
+                          }
                         >
                           <SelectTrigger className="bg-background/50 border-medical-green/20">
                             <SelectValue placeholder="Select Yes/No" />
@@ -397,7 +495,9 @@ Generated on: ${new Date().toLocaleDateString()}
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="symptoms" className="text-medical-green">Additional Symptoms & Notes</Label>
+                    <Label htmlFor="symptoms" className="text-medical-green">
+                      Additional Symptoms & Notes
+                    </Label>
                     <Textarea
                       id="symptoms"
                       value={formData.symptoms}
@@ -411,7 +511,12 @@ Generated on: ${new Date().toLocaleDateString()}
                 <div className="flex gap-4 mt-8">
                   <Button
                     onClick={handleAnalysis}
-                    disabled={isAnalyzing || !formData.name || !formData.age || !formData.gender}
+                    disabled={
+                      isAnalyzing ||
+                      !formData.name ||
+                      !formData.age ||
+                      !formData.gender
+                    }
                     className="flex-1 bg-gradient-to-r from-primary to-medical-blue hover:from-primary/80 hover:to-medical-blue/80 medical-glow"
                   >
                     {isAnalyzing ? (
@@ -426,7 +531,7 @@ Generated on: ${new Date().toLocaleDateString()}
                       </>
                     )}
                   </Button>
-                  
+
                   <Button
                     onClick={clearAll}
                     variant="outline"
@@ -460,7 +565,7 @@ Generated on: ${new Date().toLocaleDateString()}
                         {analysis}
                       </pre>
                     </div>
-                    
+
                     <Button
                       onClick={generatePDF}
                       variant="outline"
@@ -473,7 +578,10 @@ Generated on: ${new Date().toLocaleDateString()}
                 ) : (
                   <div className="text-center py-8 text-muted-foreground">
                     <Activity className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                    <p>Complete the form and click "Analyze Heart Health" to see AI-powered medical insights.</p>
+                    <p>
+                      Complete the form and click "Analyze Heart Health" to see
+                      AI-powered medical insights.
+                    </p>
                   </div>
                 )}
               </CardContent>
