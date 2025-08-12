@@ -161,13 +161,6 @@ Generate this complete detailed report following this exact structure and format
 export const handleMedicalAnalysis: RequestHandler = async (req, res) => {
   try {
     console.log("Received medical analysis request:", req.body);
-
-    // Check if API key is available
-    if (!API_KEY || !model) {
-      console.error("GEMINI_API_KEY not found in environment variables - using fallback");
-      // Use fallback analysis instead of erroring
-    }
-
     const data = req.body as MedicalAnalysisRequest;
 
     // Validate required fields
@@ -179,25 +172,32 @@ export const handleMedicalAnalysis: RequestHandler = async (req, res) => {
       });
     }
 
-    console.log("Calling Gemini AI...");
-    // Generate the prompt and call Gemini AI
+    console.log("Attempting to call Gemini AI...");
     const prompt = buildPrompt(data);
 
-    try {
-      const result = await model.generateContent(prompt);
-      const analysisText = result.response.text();
-      console.log("Gemini AI response received successfully");
+    // Try to call Gemini AI if available
+    if (API_KEY && model) {
+      try {
+        const result = await model.generateContent(prompt);
+        const analysisText = result.response.text();
+        console.log("Gemini AI response received successfully");
 
-      const response: MedicalAnalysisResponse = {
-        success: true,
-        analysis: analysisText,
-      };
+        const response: MedicalAnalysisResponse = {
+          success: true,
+          analysis: analysisText,
+        };
 
-      res.json(response);
-    } catch (aiError) {
-      console.error("Gemini AI Error:", aiError);
-      // Fallback to detailed mock analysis if AI fails
-      const mockAnalysis = `
+        return res.json(response);
+      } catch (aiError) {
+        console.error("Gemini AI Error:", aiError);
+        console.log("Falling back to sample analysis due to AI error");
+      }
+    } else {
+      console.log("Using fallback analysis - API key not available in environment");
+    }
+
+    // Fallback analysis if AI fails or API key missing
+    const mockAnalysis = `
 **Disclaimer:** This is an AI assistant and not a medical doctor. This report is for informational purposes only and is not a substitute for a professional medical diagnosis. You must consult a qualified healthcare professional for any health concerns.
 
 ### **Preliminary SHD Assessment for ${data.name}**
@@ -293,15 +293,14 @@ Consult local medical directories for:
 4. Regular monitoring and follow-up
 
 **Important:** This is a sample analysis format. Please consult qualified healthcare professionals for actual medical diagnosis and treatment.
-      `;
+    `;
 
-      const response: MedicalAnalysisResponse = {
-        success: true,
-        analysis: mockAnalysis,
-      };
+    const response: MedicalAnalysisResponse = {
+      success: true,
+      analysis: mockAnalysis,
+    };
 
-      res.json(response);
-    }
+    res.json(response);
   } catch (error) {
     console.error("Server Error in medical analysis:", error);
     res.status(500).json({
