@@ -5,12 +5,15 @@ import { MedicalAnalysisRequest, MedicalAnalysisResponse } from "@shared/api";
 // Gemini API Configuration
 const API_KEY = process.env.GEMINI_API_KEY;
 
-if (!API_KEY) {
-  throw new Error("GEMINI_API_KEY environment variable is not set");
-}
+let genAI: GoogleGenerativeAI | null = null;
+let model: any = null;
 
-const genAI = new GoogleGenerativeAI(API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+if (API_KEY) {
+  genAI = new GoogleGenerativeAI(API_KEY);
+  model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+} else {
+  console.warn("GEMINI_API_KEY environment variable is not set - AI features will use fallback");
+}
 
 function buildPrompt(data: MedicalAnalysisRequest): string {
   return `
