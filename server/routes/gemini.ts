@@ -158,6 +158,16 @@ Generate this complete detailed report following this exact structure and format
 export const handleMedicalAnalysis: RequestHandler = async (req, res) => {
   try {
     console.log("Received medical analysis request:", req.body);
+
+    // Check if API key is available
+    if (!API_KEY) {
+      console.error("GEMINI_API_KEY not found in environment variables");
+      return res.status(500).json({
+        success: false,
+        error: "Server configuration error: API key not configured.",
+      });
+    }
+
     const data = req.body as MedicalAnalysisRequest;
 
     // Validate required fields
