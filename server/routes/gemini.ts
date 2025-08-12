@@ -163,12 +163,9 @@ export const handleMedicalAnalysis: RequestHandler = async (req, res) => {
     console.log("Received medical analysis request:", req.body);
 
     // Check if API key is available
-    if (!API_KEY) {
-      console.error("GEMINI_API_KEY not found in environment variables");
-      return res.status(500).json({
-        success: false,
-        error: "Server configuration error: API key not configured.",
-      });
+    if (!API_KEY || !model) {
+      console.error("GEMINI_API_KEY not found in environment variables - using fallback");
+      // Use fallback analysis instead of erroring
     }
 
     const data = req.body as MedicalAnalysisRequest;
