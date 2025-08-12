@@ -629,8 +629,8 @@ export default function Index() {
                     <div>
                       <Activity className="w-12 h-12 mx-auto mb-4 opacity-50" />
                       <p>
-                        Complete the form and click "Analyze Heart Health" to see
-                        AI-powered medical insights.
+                        Complete the form and click "Analyze Heart Health" to
+                        see AI-powered medical insights.
                       </p>
                     </div>
                   </div>
