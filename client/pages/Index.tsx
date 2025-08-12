@@ -594,8 +594,8 @@ export default function Index() {
 
           {/* Results Section */}
           <div className="lg:col-span-1">
-            <Card className="medical-card border-medical-blue/20 h-fit">
-              <CardHeader>
+            <Card className="medical-card border-medical-blue/20 h-fit lg:h-[calc(100vh-12rem)] lg:max-h-[800px]">
+              <CardHeader className="flex-shrink-0">
                 <CardTitle className="flex items-center gap-2">
                   <FileText className="w-5 h-5 text-medical-blue" />
                   AI Analysis Results
@@ -604,31 +604,35 @@ export default function Index() {
                   Comprehensive structural heart disease assessment
                 </CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex flex-col h-full lg:h-[calc(100%-120px)]">
                 {analysis ? (
-                  <div className="space-y-4">
-                    <div className="bg-secondary/20 rounded-lg p-4 border border-medical-blue/20">
-                      <pre className="whitespace-pre-wrap text-sm font-mono leading-relaxed">
-                        {analysis}
-                      </pre>
+                  <div className="flex flex-col h-full space-y-4">
+                    <div className="flex-1 bg-secondary/20 rounded-lg border border-medical-blue/20 overflow-hidden">
+                      <div className="h-full overflow-y-auto p-4 max-h-[500px] lg:max-h-full">
+                        <pre className="whitespace-pre-wrap text-sm font-mono leading-relaxed">
+                          {analysis}
+                        </pre>
+                      </div>
                     </div>
 
                     <Button
                       onClick={generatePDF}
                       variant="outline"
-                      className="w-full border-medical-green/20 text-medical-green hover:bg-medical-green/10"
+                      className="w-full border-medical-green/20 text-medical-green hover:bg-medical-green/10 flex-shrink-0"
                     >
                       <Download className="w-4 h-4 mr-2" />
                       Download Report
                     </Button>
                   </div>
                 ) : (
-                  <div className="text-center py-8 text-muted-foreground">
-                    <Activity className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                    <p>
-                      Complete the form and click "Analyze Heart Health" to see
-                      AI-powered medical insights.
-                    </p>
+                  <div className="flex-1 flex items-center justify-center text-center text-muted-foreground">
+                    <div>
+                      <Activity className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                      <p>
+                        Complete the form and click "Analyze Heart Health" to see
+                        AI-powered medical insights.
+                      </p>
+                    </div>
                   </div>
                 )}
               </CardContent>
