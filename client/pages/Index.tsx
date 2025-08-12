@@ -179,216 +179,235 @@ Generated on: ${new Date().toLocaleDateString()}
                 </CardTitle>
                 <CardDescription>Complete medical screening form for AI analysis</CardDescription>
               </CardHeader>
-              <CardContent>
-                <Tabs defaultValue="basic" className="w-full">
-                  <TabsList className="grid w-full grid-cols-4 bg-secondary/50">
-                    <TabsTrigger value="basic">Basic Info</TabsTrigger>
-                    <TabsTrigger value="vitals">Vitals</TabsTrigger>
-                    <TabsTrigger value="lifestyle">Lifestyle</TabsTrigger>
-                    <TabsTrigger value="symptoms">Symptoms</TabsTrigger>
-                  </TabsList>
-                  
-                  <TabsContent value="basic" className="space-y-4 mt-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="name" className="text-primary">Full Name *</Label>
-                        <Input
-                          id="name"
-                          value={formData.name}
-                          onChange={(e) => updateField("name", e.target.value)}
-                          className="bg-background/50 border-primary/20 focus:border-primary"
-                          placeholder="Enter patient name"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="age" className="text-primary">Age *</Label>
-                        <Input
-                          id="age"
-                          type="number"
-                          value={formData.age}
-                          onChange={(e) => updateField("age", e.target.value)}
-                          className="bg-background/50 border-primary/20 focus:border-primary"
-                          placeholder="Enter age"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="gender" className="text-primary">Gender *</Label>
-                        <Select value={formData.gender} onValueChange={(value) => updateField("gender", value)}>
-                          <SelectTrigger className="bg-background/50 border-primary/20">
-                            <SelectValue placeholder="Select gender" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Male">Male</SelectItem>
-                            <SelectItem value="Female">Female</SelectItem>
-                            <SelectItem value="Other">Other</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="ageGroup" className="text-primary">Age Group</Label>
-                        <Select value={formData.ageGroup} onValueChange={(value) => updateField("ageGroup", value)}>
-                          <SelectTrigger className="bg-background/50 border-primary/20">
-                            <SelectValue placeholder="Select age group" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Newborn">Newborn</SelectItem>
-                            <SelectItem value="Child">Child</SelectItem>
-                            <SelectItem value="Adult">Adult</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="height" className="text-primary">Height (cm)</Label>
-                        <Input
-                          id="height"
-                          type="number"
-                          value={formData.height}
-                          onChange={(e) => updateField("height", e.target.value)}
-                          className="bg-background/50 border-primary/20 focus:border-primary"
-                          placeholder="170"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="weight" className="text-primary">Weight (kg)</Label>
-                        <Input
-                          id="weight"
-                          type="number"
-                          value={formData.weight}
-                          onChange={(e) => updateField("weight", e.target.value)}
-                          className="bg-background/50 border-primary/20 focus:border-primary"
-                          placeholder="70"
-                        />
-                      </div>
-                      <div className="space-y-2 md:col-span-2">
-                        <Label htmlFor="city" className="text-primary">City</Label>
-                        <Input
-                          id="city"
-                          value={formData.city}
-                          onChange={(e) => updateField("city", e.target.value)}
-                          className="bg-background/50 border-primary/20 focus:border-primary"
-                          placeholder="Enter city name"
-                        />
-                      </div>
+              <CardContent className="space-y-8">
+                {/* Basic Information Section */}
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3 pb-4 border-b border-primary/20">
+                    <div className="p-2 rounded-lg bg-primary/10">
+                      <User className="w-5 h-5 text-primary" />
                     </div>
-                  </TabsContent>
-
-                  <TabsContent value="vitals" className="space-y-4 mt-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="bp" className="text-medical-red">Blood Pressure</Label>
-                        <Input
-                          id="bp"
-                          value={formData.bp}
-                          onChange={(e) => updateField("bp", e.target.value)}
-                          className="bg-background/50 border-medical-red/20 focus:border-medical-red"
-                          placeholder="120/80"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="hr" className="text-medical-red">Heart Rate (BPM)</Label>
-                        <Input
-                          id="hr"
-                          type="number"
-                          value={formData.hr}
-                          onChange={(e) => updateField("hr", e.target.value)}
-                          className="bg-background/50 border-medical-red/20 focus:border-medical-red"
-                          placeholder="72"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="spo2" className="text-medical-blue">SpO2 (%)</Label>
-                        <Input
-                          id="spo2"
-                          type="number"
-                          value={formData.spo2}
-                          onChange={(e) => updateField("spo2", e.target.value)}
-                          className="bg-background/50 border-medical-blue/20 focus:border-medical-blue"
-                          placeholder="98"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="allergies" className="text-medical-orange">Allergies</Label>
-                        <Input
-                          id="allergies"
-                          value={formData.allergies}
-                          onChange={(e) => updateField("allergies", e.target.value)}
-                          className="bg-background/50 border-medical-orange/20 focus:border-medical-orange"
-                          placeholder="None / List allergies"
-                        />
-                      </div>
-                    </div>
-                  </TabsContent>
-
-                  <TabsContent value="lifestyle" className="space-y-4 mt-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {[
-                        { key: "smoking", label: "Smoking" },
-                        { key: "alcohol", label: "Alcohol" },
-                        { key: "tobacco", label: "Tobacco" },
-                        { key: "hypertensive", label: "Hypertensive Drugs" },
-                        { key: "diabetes", label: "Diabetes/High Sugar" }
-                      ].map(({ key, label }) => (
-                        <div key={key} className="space-y-2">
-                          <Label htmlFor={key} className="text-medical-purple">{label}</Label>
-                          <Select 
-                            value={formData[key as keyof MedicalAnalysisRequest]} 
-                            onValueChange={(value) => updateField(key as keyof MedicalAnalysisRequest, value)}
-                          >
-                            <SelectTrigger className="bg-background/50 border-medical-purple/20">
-                              <SelectValue placeholder="Select Yes/No" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="Yes">Yes</SelectItem>
-                              <SelectItem value="No">No</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      ))}
-                    </div>
-                  </TabsContent>
-
-                  <TabsContent value="symptoms" className="space-y-4 mt-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                      {[
-                        { key: "cyanosis", label: "Cyanosis (Blue lips/skin)" },
-                        { key: "chestPain", label: "Chest Pain" },
-                        { key: "fatigue", label: "Fatigue" },
-                        { key: "sob", label: "Shortness of Breath" },
-                        { key: "syncope", label: "Syncope (Fainting)" },
-                        { key: "palpitations", label: "Palpitations" },
-                        { key: "familyHistory", label: "Family History of SHD" },
-                        { key: "feeding", label: "Feeding Issues (newborn only)" }
-                      ].map(({ key, label }) => (
-                        <div key={key} className="space-y-2">
-                          <Label htmlFor={key} className="text-medical-green">{label}</Label>
-                          <Select 
-                            value={formData[key as keyof MedicalAnalysisRequest]} 
-                            onValueChange={(value) => updateField(key as keyof MedicalAnalysisRequest, value)}
-                          >
-                            <SelectTrigger className="bg-background/50 border-medical-green/20">
-                              <SelectValue placeholder="Select Yes/No" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="Yes">Yes</SelectItem>
-                              <SelectItem value="No">No</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      ))}
-                    </div>
-                    
+                    <h3 className="text-xl font-semibold text-primary">Basic Information</h3>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="symptoms" className="text-medical-green">Other Symptoms</Label>
-                      <Textarea
-                        id="symptoms"
-                        value={formData.symptoms}
-                        onChange={(e) => updateField("symptoms", e.target.value)}
-                        className="bg-background/50 border-medical-green/20 focus:border-medical-green min-h-[120px]"
-                        placeholder="Describe any other symptoms, concerns, or relevant medical history..."
+                      <Label htmlFor="name" className="text-primary">Full Name *</Label>
+                      <Input
+                        id="name"
+                        value={formData.name}
+                        onChange={(e) => updateField("name", e.target.value)}
+                        className="bg-background/50 border-primary/20 focus:border-primary"
+                        placeholder="Enter patient name"
                       />
                     </div>
-                  </TabsContent>
-                </Tabs>
+                    <div className="space-y-2">
+                      <Label htmlFor="age" className="text-primary">Age *</Label>
+                      <Input
+                        id="age"
+                        type="number"
+                        value={formData.age}
+                        onChange={(e) => updateField("age", e.target.value)}
+                        className="bg-background/50 border-primary/20 focus:border-primary"
+                        placeholder="Enter age"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="gender" className="text-primary">Gender *</Label>
+                      <Select value={formData.gender} onValueChange={(value) => updateField("gender", value)}>
+                        <SelectTrigger className="bg-background/50 border-primary/20">
+                          <SelectValue placeholder="Select gender" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Male">Male</SelectItem>
+                          <SelectItem value="Female">Female</SelectItem>
+                          <SelectItem value="Other">Other</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="ageGroup" className="text-primary">Age Group</Label>
+                      <Select value={formData.ageGroup} onValueChange={(value) => updateField("ageGroup", value)}>
+                        <SelectTrigger className="bg-background/50 border-primary/20">
+                          <SelectValue placeholder="Select age group" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Newborn">Newborn</SelectItem>
+                          <SelectItem value="Child">Child</SelectItem>
+                          <SelectItem value="Adult">Adult</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="height" className="text-primary">Height (cm)</Label>
+                      <Input
+                        id="height"
+                        type="number"
+                        value={formData.height}
+                        onChange={(e) => updateField("height", e.target.value)}
+                        className="bg-background/50 border-primary/20 focus:border-primary"
+                        placeholder="170"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="weight" className="text-primary">Weight (kg)</Label>
+                      <Input
+                        id="weight"
+                        type="number"
+                        value={formData.weight}
+                        onChange={(e) => updateField("weight", e.target.value)}
+                        className="bg-background/50 border-primary/20 focus:border-primary"
+                        placeholder="70"
+                      />
+                    </div>
+                    <div className="space-y-2 md:col-span-2">
+                      <Label htmlFor="city" className="text-primary">City</Label>
+                      <Input
+                        id="city"
+                        value={formData.city}
+                        onChange={(e) => updateField("city", e.target.value)}
+                        className="bg-background/50 border-primary/20 focus:border-primary"
+                        placeholder="Enter city name"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Vitals Section */}
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3 pb-4 border-b border-medical-red/20">
+                    <div className="p-2 rounded-lg bg-medical-red/10">
+                      <Activity className="w-5 h-5 text-medical-red" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-medical-red">Vital Signs</h3>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="bp" className="text-medical-red">Blood Pressure</Label>
+                      <Input
+                        id="bp"
+                        value={formData.bp}
+                        onChange={(e) => updateField("bp", e.target.value)}
+                        className="bg-background/50 border-medical-red/20 focus:border-medical-red"
+                        placeholder="120/80"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="hr" className="text-medical-red">Heart Rate (BPM)</Label>
+                      <Input
+                        id="hr"
+                        type="number"
+                        value={formData.hr}
+                        onChange={(e) => updateField("hr", e.target.value)}
+                        className="bg-background/50 border-medical-red/20 focus:border-medical-red"
+                        placeholder="72"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="spo2" className="text-medical-blue">SpO2 (%)</Label>
+                      <Input
+                        id="spo2"
+                        type="number"
+                        value={formData.spo2}
+                        onChange={(e) => updateField("spo2", e.target.value)}
+                        className="bg-background/50 border-medical-blue/20 focus:border-medical-blue"
+                        placeholder="98"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="allergies" className="text-medical-orange">Allergies</Label>
+                      <Input
+                        id="allergies"
+                        value={formData.allergies}
+                        onChange={(e) => updateField("allergies", e.target.value)}
+                        className="bg-background/50 border-medical-orange/20 focus:border-medical-orange"
+                        placeholder="None / List allergies"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Lifestyle Section */}
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3 pb-4 border-b border-medical-purple/20">
+                    <div className="p-2 rounded-lg bg-medical-purple/10">
+                      <Heart className="w-5 h-5 text-medical-purple" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-medical-purple">Lifestyle & Medical History</h3>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {[
+                      { key: "smoking", label: "Smoking" },
+                      { key: "alcohol", label: "Alcohol" },
+                      { key: "tobacco", label: "Tobacco" },
+                      { key: "hypertensive", label: "Hypertensive Drugs" },
+                      { key: "diabetes", label: "Diabetes/High Sugar" }
+                    ].map(({ key, label }) => (
+                      <div key={key} className="space-y-2">
+                        <Label htmlFor={key} className="text-medical-purple">{label}</Label>
+                        <Select
+                          value={formData[key as keyof MedicalAnalysisRequest]}
+                          onValueChange={(value) => updateField(key as keyof MedicalAnalysisRequest, value)}
+                        >
+                          <SelectTrigger className="bg-background/50 border-medical-purple/20">
+                            <SelectValue placeholder="Select Yes/No" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Yes">Yes</SelectItem>
+                            <SelectItem value="No">No</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Symptoms Section */}
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3 pb-4 border-b border-medical-green/20">
+                    <div className="p-2 rounded-lg bg-medical-green/10">
+                      <FileText className="w-5 h-5 text-medical-green" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-medical-green">Symptoms Assessment</h3>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    {[
+                      { key: "cyanosis", label: "Cyanosis (Blue lips/skin)" },
+                      { key: "chestPain", label: "Chest Pain" },
+                      { key: "fatigue", label: "Fatigue" },
+                      { key: "sob", label: "Shortness of Breath" },
+                      { key: "syncope", label: "Syncope (Fainting)" },
+                      { key: "palpitations", label: "Palpitations" },
+                      { key: "familyHistory", label: "Family History of SHD" },
+                      { key: "feeding", label: "Feeding Issues (newborn only)" }
+                    ].map(({ key, label }) => (
+                      <div key={key} className="space-y-2">
+                        <Label htmlFor={key} className="text-medical-green">{label}</Label>
+                        <Select
+                          value={formData[key as keyof MedicalAnalysisRequest]}
+                          onValueChange={(value) => updateField(key as keyof MedicalAnalysisRequest, value)}
+                        >
+                          <SelectTrigger className="bg-background/50 border-medical-green/20">
+                            <SelectValue placeholder="Select Yes/No" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Yes">Yes</SelectItem>
+                            <SelectItem value="No">No</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="symptoms" className="text-medical-green">Additional Symptoms & Notes</Label>
+                    <Textarea
+                      id="symptoms"
+                      value={formData.symptoms}
+                      onChange={(e) => updateField("symptoms", e.target.value)}
+                      className="bg-background/50 border-medical-green/20 focus:border-medical-green min-h-[120px]"
+                      placeholder="Describe any other symptoms, concerns, or relevant medical history..."
+                    />
+                  </div>
+                </div>
 
                 <div className="flex gap-4 mt-8">
                   <Button
