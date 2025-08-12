@@ -62,7 +62,7 @@ Your tasks:
 export const handleMedicalAnalysis: RequestHandler = async (req, res) => {
   try {
     const data = req.body as MedicalAnalysisRequest;
-    
+
     // Validate required fields
     if (!data.name || !data.age || !data.gender) {
       return res.status(400).json({
@@ -71,52 +71,14 @@ export const handleMedicalAnalysis: RequestHandler = async (req, res) => {
       });
     }
 
-    // For demo purposes, we'll return a mock analysis
-    // In production, you would integrate with Google's Gemini AI API here
-    const mockAnalysis = `
-🏥 STRUCTURAL HEART DISEASE SCREENING ANALYSIS
-
-👤 Patient: ${data.name} (${data.age} years, ${data.gender})
-📍 Location: ${data.city}
-
-🎯 RISK ASSESSMENT
-Risk Score: 6/10 (Moderate Risk)
-⚠️ Cardiologist consultation recommended within 2-4 weeks
-
-🔬 RECOMMENDED TESTS
-1. Echocardiogram (ECHO) - Priority
-2. 12-lead ECG
-3. Chest X-ray
-4. Complete Blood Count (CBC)
-5. Lipid Profile
-
-🩺 POSSIBLE CONDITIONS TO INVESTIGATE
-- Atrial Septal Defect (ASD)
-- Ventricular Septal Defect (VSD)
-- Mitral Valve Prolapse
-- Hypertrophic Cardiomyopathy
-
-💬 WHAT TO TELL YOUR DOCTOR
-"I've been experiencing [${data.symptoms}]. I'm concerned about potential structural heart disease. Could you please evaluate me for conditions like ASD, VSD, or valve issues?"
-
-🏥 RECOMMENDED CARDIAC HOSPITALS IN ${data.city}
-1. All India Institute of Medical Sciences (AIIMS)
-2. Fortis Hospital - Cardiology Department
-3. Apollo Hospital - Heart Institute
-
-🚨 RED FLAGS - SEEK IMMEDIATE CARE IF:
-- Severe chest pain
-- Difficulty breathing at rest
-- Fainting episodes
-- Blue lips or fingernails
-
-📋 DOCTOR SUMMARY
-${data.age}-year-old ${data.gender} presenting with moderate risk factors for structural heart disease. Recommend echocardiogram and cardiology consultation for comprehensive evaluation.
-`;
+    // Generate the prompt and call Gemini AI
+    const prompt = buildPrompt(data);
+    const result = await model.generateContent(prompt);
+    const analysisText = result.response.text();
 
     const response: MedicalAnalysisResponse = {
       success: true,
-      analysis: mockAnalysis
+      analysis: analysisText
     };
 
     res.json(response);
