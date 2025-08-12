@@ -1,5 +1,11 @@
 import { RequestHandler } from "express";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { MedicalAnalysisRequest, MedicalAnalysisResponse } from "@shared/api";
+
+// Gemini API Configuration
+const API_KEY = "AIzaSyCU5a3YoiUTzmVCaNAvum9NGbxo2a-fdYQ";
+const genAI = new GoogleGenerativeAI(API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
 function buildPrompt(data: MedicalAnalysisRequest): string {
   return `
