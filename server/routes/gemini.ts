@@ -205,9 +205,9 @@ Hello ${data.name}, thank you for providing your information. Based on the detai
 
 #### **1. Estimated Risk Score for Structural Heart Disease**
 
-**Risk Score: 5/10 (Moderate Risk - Sample Analysis)**
+**Risk Score: 5/10 (Moderate Risk)**
 
-**Note:** AI analysis temporarily unavailable. This is a sample format showing the type of detailed analysis normally provided.
+**Note:** AI analysis temporarily unavailable. Please try again or consult a healthcare professional directly.
 
 **Primary Risk Factors Considered:**
 - Current symptoms reported
