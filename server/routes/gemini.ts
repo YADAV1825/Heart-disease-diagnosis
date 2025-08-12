@@ -181,41 +181,103 @@ export const handleMedicalAnalysis: RequestHandler = async (req, res) => {
       res.json(response);
     } catch (aiError) {
       console.error("Gemini AI Error:", aiError);
-      // Fallback to mock analysis if AI fails
+      // Fallback to detailed mock analysis if AI fails
       const mockAnalysis = `
-🏥 CARDIOAI SCREENING ANALYSIS
+**Disclaimer:** This is an AI assistant and not a medical doctor. This report is for informational purposes only and is not a substitute for a professional medical diagnosis. You must consult a qualified healthcare professional for any health concerns.
 
-👤 Patient: ${data.name} (${data.age} years, ${data.gender})
-📍 Location: ${data.city || "Not specified"}
+### **Preliminary SHD Assessment for ${data.name}**
 
-⚠️ Note: AI analysis temporarily unavailable. Showing sample analysis format.
+Hello ${data.name}, thank you for providing your information. Based on the details you've shared, here is a comprehensive assessment.
 
-🎯 RISK ASSESSMENT
-Risk Score: 5/10 (Moderate Risk - Sample)
-⚠️ Recommend cardiologist consultation for proper evaluation
+**Patient Information:**
+- Name: ${data.name}
+- Age: ${data.age} years (${data.ageGroup})
+- Gender: ${data.gender}
+- Height: ${data.height} cm
+- Weight: ${data.weight} kg
+- Location: ${data.city}
 
-🔬 RECOMMENDED TESTS
-1. Echocardiogram (ECHO) - Priority
-2. 12-lead ECG
-3. Chest X-ray
-4. Complete Blood Count (CBC)
+**Vitals:**
+- Blood Pressure: ${data.bp}
+- Heart Rate: ${data.hr} BPM
+- SpO2: ${data.spo2}%
+- Allergies: ${data.allergies}
 
-🩺 POSSIBLE CONDITIONS TO INVESTIGATE
-- Atrial Septal Defect (ASD)
-- Ventricular Septal Defect (VSD)
-- Mitral Valve conditions
-- General cardiac screening
+#### **1. Estimated Risk Score for Structural Heart Disease**
 
-💬 NEXT STEPS
-Please consult with a cardiologist for professional medical evaluation.
+**Risk Score: 5/10 (Moderate Risk - Sample Analysis)**
 
-🏥 GENERAL RECOMMENDATIONS
-1. Schedule cardiac consultation
-2. Prepare medical history
-3. Follow up as recommended by physician
+**Note:** AI analysis temporarily unavailable. This is a sample format showing the type of detailed analysis normally provided.
 
-📋 IMPORTANT
-This is a sample format. Please consult healthcare professionals for actual medical advice.
+**Primary Risk Factors Considered:**
+- Current symptoms reported
+- Vital signs measurements
+- Lifestyle factors
+- Family history
+
+#### **2. Urgency for Cardiologist Consultation**
+
+**YES, consultation with a cardiologist is recommended** for proper medical evaluation.
+
+#### **3. Suggested Next Steps & Diagnostic Tests**
+
+1. **Clinical Examination:** Complete physical examination by a qualified physician
+2. **Electrocardiogram (ECG/EKG):** To assess heart rhythm and electrical activity
+3. **Echocardiogram (ECHO):** Essential for structural heart disease detection
+4. **Blood Tests:** Complete blood panel including cardiac markers
+
+#### **4. Possible Structural Heart Disease (SHD) Conditions**
+
+A medical professional would evaluate for:
+- Valvular heart disease
+- Cardiomyopathy conditions
+- Congenital heart defects
+- Other cardiac abnormalities
+
+#### **5. What to Tell Your Doctor**
+
+Present your symptoms clearly:
+- Describe any chest pain, shortness of breath, or other symptoms
+- Mention your blood pressure readings
+- Discuss your lifestyle factors
+- Provide family medical history
+
+#### **6. Cardiac Hospitals in ${data.city}, India**
+
+Consult local medical directories for:
+1. Government hospitals with cardiology departments
+2. Private multi-specialty hospitals
+3. Cardiac specialty centers
+
+#### **7. Red Flags & Continuous Care Advice**
+
+**Seek immediate medical attention if experiencing:**
+- Severe chest pain
+- Difficulty breathing
+- Fainting or severe dizziness
+- Irregular heartbeat
+
+**General Health Advice:**
+- Maintain healthy lifestyle
+- Regular medical check-ups
+- Follow medical advice
+- Monitor blood pressure regularly
+
+---
+
+### **Doctor's Summary**
+
+**Patient:** ${data.name}, ${data.age}-year-old ${data.gender} from ${data.city}.
+
+**Assessment:** Requires professional medical evaluation for comprehensive cardiac assessment.
+
+**Recommended Plan:**
+1. Schedule consultation with cardiologist
+2. Complete diagnostic workup as recommended
+3. Follow medical advice for treatment plan
+4. Regular monitoring and follow-up
+
+**Important:** This is a sample analysis format. Please consult qualified healthcare professionals for actual medical diagnosis and treatment.
       `;
 
       const response: MedicalAnalysisResponse = {
