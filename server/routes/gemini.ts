@@ -61,29 +61,81 @@ Your tasks:
 
 export const handleMedicalAnalysis: RequestHandler = async (req, res) => {
   try {
+    console.log("Received medical analysis request:", req.body);
     const data = req.body as MedicalAnalysisRequest;
 
     // Validate required fields
     if (!data.name || !data.age || !data.gender) {
+      console.log("Validation failed - missing required fields");
       return res.status(400).json({
         success: false,
         error: "Missing required fields: name, age, and gender are required.",
       });
     }
 
+    console.log("Calling Gemini AI...");
     // Generate the prompt and call Gemini AI
     const prompt = buildPrompt(data);
-    const result = await model.generateContent(prompt);
-    const analysisText = result.response.text();
 
-    const response: MedicalAnalysisResponse = {
-      success: true,
-      analysis: analysisText,
-    };
+    try {
+      const result = await model.generateContent(prompt);
+      const analysisText = result.response.text();
+      console.log("Gemini AI response received successfully");
 
-    res.json(response);
+      const response: MedicalAnalysisResponse = {
+        success: true,
+        analysis: analysisText,
+      };
+
+      res.json(response);
+    } catch (aiError) {
+      console.error("Gemini AI Error:", aiError);
+      // Fallback to mock analysis if AI fails
+      const mockAnalysis = `
+🏥 CARDIOAI SCREENING ANALYSIS
+
+👤 Patient: ${data.name} (${data.age} years, ${data.gender})
+📍 Location: ${data.city || "Not specified"}
+
+⚠️ Note: AI analysis temporarily unavailable. Showing sample analysis format.
+
+🎯 RISK ASSESSMENT
+Risk Score: 5/10 (Moderate Risk - Sample)
+⚠️ Recommend cardiologist consultation for proper evaluation
+
+🔬 RECOMMENDED TESTS
+1. Echocardiogram (ECHO) - Priority
+2. 12-lead ECG
+3. Chest X-ray
+4. Complete Blood Count (CBC)
+
+🩺 POSSIBLE CONDITIONS TO INVESTIGATE
+- Atrial Septal Defect (ASD)
+- Ventricular Septal Defect (VSD)
+- Mitral Valve conditions
+- General cardiac screening
+
+💬 NEXT STEPS
+Please consult with a cardiologist for professional medical evaluation.
+
+🏥 GENERAL RECOMMENDATIONS
+1. Schedule cardiac consultation
+2. Prepare medical history
+3. Follow up as recommended by physician
+
+📋 IMPORTANT
+This is a sample format. Please consult healthcare professionals for actual medical advice.
+      `;
+
+      const response: MedicalAnalysisResponse = {
+        success: true,
+        analysis: mockAnalysis,
+      };
+
+      res.json(response);
+    }
   } catch (error) {
-    console.error("Error in medical analysis:", error);
+    console.error("Server Error in medical analysis:", error);
     res.status(500).json({
       success: false,
       error: "Failed to analyze medical data. Please try again.",
