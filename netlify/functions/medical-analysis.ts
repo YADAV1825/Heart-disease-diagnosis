@@ -357,12 +357,12 @@ ${data.familyHistory === "Yes" ? "- <strong>Genetic Cardiomyopathies:</strong> G
 
 Be clear and specific. Create a list so you don't forget anything:
 
-- "I am here because I've been experiencing ${[data.chestPain === "Yes" && "chest pain", data.sob === "Yes" && "shortness of breath", data.palpitations === "Yes" && "palpitations", data.syncope === "Yes" && "fainting episodes"].filter(Boolean).join(", ") || "concerns about my heart health"}."
-- Describe the symptoms in detail: when they occur, how long they last, what triggers them
-- "My current vital signs include blood pressure of ${data.bp}, heart rate of ${data.hr} BPM"
-- "${data.smoking === "Yes" ? "I am a smoker" : "I do not smoke"} and ${data.alcohol === "Yes" ? "I consume alcohol" : "I do not drink alcohol"}"
-- "${data.familyHistory === "Yes" ? "I have a family history of heart disease" : "No known family history of heart disease"}"
-- Mention any medications you're currently taking
+- "I am here because I've been experiencing ${[data.chestPain === "Yes" && "chest pain", data.sob === "Yes" && "shortness of breath", data.palpitations === "Yes" && "palpitations", data.syncope === "Yes" && "fainting episodes"].filter(Boolean).join(", ") || "concerns about my heart health"}."<br>
+- Describe the symptoms in detail: when they occur, how long they last, what triggers them<br>
+- "My current vital signs include blood pressure of ${data.bp}, heart rate of ${data.hr} BPM"<br>
+- "${data.smoking === "Yes" ? "I am a smoker" : "I do not smoke"} and ${data.alcohol === "Yes" ? "I consume alcohol" : "I do not drink alcohol"}"<br>
+- "${data.familyHistory === "Yes" ? "I have a family history of heart disease" : "No known family history of heart disease"}"<br>
+- Mention any medications you're currently taking<br>
 
 <h3 style="color: #dc2626; font-size: 18px; font-weight: bold; margin: 16px 0;">🏥 6. Cardiac Hospitals in ${data.city || "Your Area"}, India</h3>
 
