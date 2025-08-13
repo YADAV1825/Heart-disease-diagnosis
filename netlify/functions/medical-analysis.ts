@@ -279,7 +279,7 @@ export const handler: Handler = async (event) => {
 
     const professionalAnalysis = `
 <div style="color: #dc2626; font-weight: bold; padding: 12px; background-color: #fef2f2; border-radius: 8px; margin-bottom: 16px;">
-⚠️ Disclaimer: This is a clinical assistance tool and not a substitute for professional medical diagnosis. You must consult a qualified healthcare professional for any health concerns.
+⚠��� Disclaimer: This is a clinical assistance tool and not a substitute for professional medical diagnosis. You must consult a qualified healthcare professional for any health concerns.
 </div>
 
 <h2 style="color: #0891b2; font-size: 24px; font-weight: bold; margin: 20px 0;">🏥 Preliminary SHD Assessment for ${data.name}</h2>
@@ -405,21 +405,21 @@ If access to a cardiologist is difficult or delayed:
 
 <h3 style="color: #0891b2; font-size: 20px; font-weight: bold; margin: 20px 0;">👨‍⚕️ Doctor's Summary</h3>
 
-<strong>Patient:</strong> ${data.name}, ${data.age}-year-old ${data.gender} from ${data.city || "Unknown location"}.
+<strong>Patient:</strong> ${data.name}, ${data.age}-year-old ${data.gender} from ${data.city || "Unknown location"}.<br><br>
 
-<strong>Presenting Complaint:</strong> ${[data.chestPain === "Yes" && "chest pain", data.sob === "Yes" && "shortness of breath", data.fatigue === "Yes" && "fatigue", data.palpitations === "Yes" && "palpitations", data.syncope === "Yes" && "syncope"].filter(Boolean).join(", ") || "Cardiac screening request"}
+<strong>Presenting Complaint:</strong> ${[data.chestPain === "Yes" && "chest pain", data.sob === "Yes" && "shortness of breath", data.fatigue === "Yes" && "fatigue", data.palpitations === "Yes" && "palpitations", data.syncope === "Yes" && "syncope"].filter(Boolean).join(", ") || "Cardiac screening request"}<br><br>
 
-<strong>Vitals:</strong> ${data.bp ? `BP: ${data.bp}, ` : ""}${data.hr ? `HR: ${data.hr} BPM, ` : ""}${data.spo2 ? `SpO2: ${data.spo2}%` : ""}
+<strong>Vitals:</strong> ${data.bp ? `BP: ${data.bp}, ` : ""}${data.hr ? `HR: ${data.hr} BPM, ` : ""}${data.spo2 ? `SpO2: ${data.spo2}%` : ""}<br><br>
 
-<strong>Risk Factors:</strong> ${[data.smoking === "Yes" && "smoking", data.diabetes === "Yes" && "diabetes", data.familyHistory === "Yes" && "family history", data.hypertensive === "Yes" && "hypertensive medications"].filter(Boolean).join(", ") || "None identified"}
+<strong>Risk Factors:</strong> ${[data.smoking === "Yes" && "smoking", data.diabetes === "Yes" && "diabetes", data.familyHistory === "Yes" && "family history", data.hypertensive === "Yes" && "hypertensive medications"].filter(Boolean).join(", ") || "None identified"}<br><br>
 
-<strong>Assessment:</strong> ${riskScore >= 7 ? "High-risk presentation requiring urgent cardiology evaluation" : riskScore >= 5 ? "Moderate risk requiring timely cardiology consultation" : "Low to moderate risk, routine cardiology evaluation recommended"}. ${riskScore >= 6 ? "Multiple risk factors present warrant comprehensive cardiac workup." : "Standard cardiac screening protocols apply."}
+<strong>Assessment:</strong> ${riskScore >= 7 ? "High-risk presentation requiring urgent cardiology evaluation" : riskScore >= 5 ? "Moderate risk requiring timely cardiology consultation" : "Low to moderate risk, routine cardiology evaluation recommended"}. ${riskScore >= 6 ? "Multiple risk factors present warrant comprehensive cardiac workup." : "Standard cardiac screening protocols apply."}<br><br>
 
 <div style="color: #059669; font-weight: bold; margin: 12px 0;">Recommended Plan:</div>
-1. ${urgency.includes("URGENT") ? "Urgent cardiology consultation within 24-48 hours" : "Cardiology consultation within 2-4 weeks"}
-2. Initial workup: ECG, Echocardiogram, basic metabolic panel
-3. ${riskScore >= 6 ? "Consider stress testing and extended monitoring" : "Standard diagnostic workup as per cardiologist recommendation"}
-4. Lifestyle counseling regarding ${[data.smoking === "Yes" && "smoking cessation", "cardiac risk reduction", "regular follow-up"].filter(Boolean).join(", ")}
+1. ${urgency.includes("URGENT") ? "Urgent cardiology consultation within 24-48 hours" : "Cardiology consultation within 2-4 weeks"}<br>
+2. Initial workup: ECG, Echocardiogram, basic metabolic panel<br>
+3. ${riskScore >= 6 ? "Consider stress testing and extended monitoring" : "Standard diagnostic workup as per cardiologist recommendation"}<br>
+4. Lifestyle counseling regarding ${[data.smoking === "Yes" && "smoking cessation", "cardiac risk reduction", "regular follow-up"].filter(Boolean).join(", ")}<br>
 
 <div style="color: #dc2626; font-style: italic; margin-top: 16px;"><strong>Note:</strong> This assessment is based on provided information and should not replace professional medical evaluation. Seek immediate medical attention for any acute symptoms.</div>
     `;
