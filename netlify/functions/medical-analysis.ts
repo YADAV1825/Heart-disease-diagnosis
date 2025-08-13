@@ -389,55 +389,77 @@ ${riskScore >= 6 ? '<div class="test-item"><span class="test-number">6.</span> <
 <div class="conditions-section">
 <h3 class="section-title">🏥 4. Possible Structural Heart Disease (SHD) Conditions</h3>
 
+<div class="conditions-intro">
 Based on your profile, a doctor would investigate several possibilities:
+</div>
+<div class="conditions-list">
+<div class="condition-item"><span class="condition-name">Valvular Heart Disease:</span> <span class="condition-description">Conditions affecting heart valves (mitral, aortic, tricuspid, pulmonary)</span></div>
+<div class="condition-item"><span class="condition-name">Cardiomyopathy:</span> <span class="condition-description">Diseases of the heart muscle including hypertrophic, dilated, or restrictive types</span></div>
+<div class="condition-item"><span class="condition-name">Congenital Defects:</span> <span class="condition-description">Birth defects like atrial septal defect (ASD), ventricular septal defect (VSD)</span></div>
+<div class="condition-item"><span class="condition-name">Coronary Artery Disease:</span> <span class="condition-description">Blockages in heart arteries</span></div>
+${data.familyHistory === "Yes" ? '<div class="condition-item"><span class="condition-name">Genetic Cardiomyopathies:</span> <span class="condition-description">Given family history, inherited heart conditions should be evaluated</span></div>' : ""}
+</div>
+</div>
 
-- **Valvular Heart Disease:** Conditions affecting heart valves (mitral, aortic, tricuspid, pulmonary)
-- **Cardiomyopathy:** Diseases of the heart muscle including hypertrophic, dilated, or restrictive types
-- **Congenital Defects:** Birth defects like atrial septal defect (ASD), ventricular septal defect (VSD)
-- **Coronary Artery Disease:** Blockages in heart arteries
-${data.familyHistory === "Yes" ? "- **Genetic Cardiomyopathies:** Given family history, inherited heart conditions should be evaluated" : ""}
-
-#### **5. What to Tell Your Doctor**
-
+<div class="doctor-advice-section">
+<h3 class="section-title">💬 5. What to Tell Your Doctor</h3>
+<div class="advice-intro">
 Be clear and specific. Create a list so you don't forget anything:
+</div>
+<div class="advice-list">
+<div class="advice-item">🗣️ "I am here because I've been experiencing ${[data.chestPain === "Yes" && "chest pain", data.sob === "Yes" && "shortness of breath", data.palpitations === "Yes" && "palpitations", data.syncope === "Yes" && "fainting episodes"].filter(Boolean).join(", ") || "concerns about my heart health"}."</div>
+<div class="advice-item">📝 Describe the symptoms in detail: when they occur, how long they last, what triggers them</div>
+<div class="advice-item">📊 "My current vital signs include blood pressure of ${data.bp}, heart rate of ${data.hr} BPM"</div>
+<div class="advice-item">🚭 "${data.smoking === "Yes" ? "I am a smoker" : "I do not smoke"} and ${data.alcohol === "Yes" ? "I consume alcohol" : "I do not drink alcohol"}"</div>
+<div class="advice-item">👪 "${data.familyHistory === "Yes" ? "I have a family history of heart disease" : "No known family history of heart disease"}"</div>
+<div class="advice-item">💊 Mention any medications you're currently taking</div>
+</div>
+</div>
 
-- "I am here because I've been experiencing ${[data.chestPain === "Yes" && "chest pain", data.sob === "Yes" && "shortness of breath", data.palpitations === "Yes" && "palpitations", data.syncope === "Yes" && "fainting episodes"].filter(Boolean).join(", ") || "concerns about my heart health"}."
-- Describe the symptoms in detail: when they occur, how long they last, what triggers them
-- "My current vital signs include blood pressure of ${data.bp}, heart rate of ${data.hr} BPM"
-- "${data.smoking === "Yes" ? "I am a smoker" : "I do not smoke"} and ${data.alcohol === "Yes" ? "I consume alcohol" : "I do not drink alcohol"}"
-- "${data.familyHistory === "Yes" ? "I have a family history of heart disease" : "No known family history of heart disease"}"
-- Mention any medications you're currently taking
-
-#### **6. Cardiac Hospitals in ${data.city || "Your Area"}, India**
-
+<div class="hospitals-section">
+<h3 class="section-title">🏥 6. Cardiac Hospitals in ${data.city || "Your Area"}, India</h3>
+<div class="hospitals-intro">
 Here are types of facilities to look for in ${data.city || "your city"}:
+</div>
+<div class="hospitals-list">
+<div class="hospital-item"><span class="hospital-type">Government Medical Colleges:</span> <span class="hospital-description">Often have excellent cardiology departments with experienced doctors</span></div>
+<div class="hospital-item"><span class="hospital-type">Multi-specialty Private Hospitals:</span> <span class="hospital-description">Usually have advanced cardiac care units and latest equipment</span></div>
+<div class="hospital-item"><span class="hospital-type">Dedicated Heart Institutes:</span> <span class="hospital-description">Specialized cardiac centers with comprehensive heart care services</span></div>
+</div>
+<div class="hospitals-note">
+<em>Consult local medical directories or online resources for specific hospitals in your area.</em>
+</div>
+</div>
 
-1. **Government Medical Colleges:** Often have excellent cardiology departments with experienced doctors
-2. **Multi-specialty Private Hospitals:** Usually have advanced cardiac care units and latest equipment
-3. **Dedicated Heart Institutes:** Specialized cardiac centers with comprehensive heart care services
-
-*Consult local medical directories or online resources for specific hospitals in your area.*
-
-#### **7. Alternative Screening for Rural/Low-Resource Settings**
-
+<div class="alternative-section">
+<h3 class="section-title">🌍 7. Alternative Screening for Rural/Low-Resource Settings</h3>
+<div class="alternative-intro">
 If access to a cardiologist is difficult or delayed:
+</div>
+<div class="alternative-list">
+<div class="alternative-item"><span class="alternative-type">Primary Care Doctor:</span> <span class="alternative-description">Can perform initial evaluation and refer appropriately</span></div>
+<div class="alternative-item"><span class="alternative-type">ECG at Local Clinic:</span> <span class="alternative-description">Most basic health centers have ECG capability</span></div>
+<div class="alternative-item"><span class="alternative-type">Telemedicine Consultation:</span> <span class="alternative-description">Many hospitals now offer remote cardiology consultations</span></div>
+<div class="alternative-item"><span class="alternative-type">Mobile Health Camps:</span> <span class="alternative-description">Look out for cardiac screening camps in your area</span></div>
+</div>
+</div>
 
-- **Primary Care Doctor:** Can perform initial evaluation and refer appropriately
-- **ECG at Local Clinic:** Most basic health centers have ECG capability
-- **Telemedicine Consultation:** Many hospitals now offer remote cardiology consultations
-- **Mobile Health Camps:** Look out for cardiac screening camps in your area
+<div class="red-flags-section">
+<h3 class="section-title">🚨 8. Red Flags & Continuous Care Advice</h3>
+<div class="red-flags">
+<h4 class="red-flags-title">Red Flags: Seek IMMEDIATE emergency care if you experience:</h4>
+<div class="red-flags-list">
+<div class="red-flag-item">⚠️ Severe crushing chest pain lasting more than a few minutes</div>
+<div class="red-flag-item">⚠️ Chest pain with sweating, nausea, or shortness of breath</div>
+<div class="red-flag-item">⚠️ Sudden severe shortness of breath</div>
+<div class="red-flag-item">⚠️ Fainting or near-fainting episodes</div>
+<div class="red-flag-item">⚠️ Severe dizziness with chest discomfort</div>
+<div class="red-flag-item">⚠️ Rapid or very irregular heartbeat with symptoms</div>
+</div>
+</div>
 
-#### **8. Red Flags & Continuous Care Advice**
-
-**Red Flags: Seek IMMEDIATE emergency care if you experience:**
-- Severe crushing chest pain lasting more than a few minutes
-- Chest pain with sweating, nausea, or shortness of breath
-- Sudden severe shortness of breath
-- Fainting or near-fainting episodes
-- Severe dizziness with chest discomfort
-- Rapid or very irregular heartbeat with symptoms
-
-**Continuous Care Advice:**
+<div class="continuous-care">
+<h4 class="continuous-care-title">Continuous Care Advice:</h4>
 - **Lifestyle Modifications:** ${data.smoking === "Yes" ? "Quit smoking immediately - this is crucial for heart health" : "Continue avoiding smoking"}
 - **Regular Monitoring:** Keep track of blood pressure and heart rate
 - **Diet:** Heart-healthy diet low in salt, saturated fats, and rich in fruits and vegetables
