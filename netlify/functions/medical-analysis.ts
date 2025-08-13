@@ -223,34 +223,8 @@ export const handler: Handler = async (event) => {
     // For demo purposes, using a comprehensive mock analysis
     console.log("Using professional mock analysis for demo purposes");
 
-    // Try to call Gemini AI if available
-    if (API_KEY) {
-      try {
-        console.log("Attempting to call Gemini AI...");
-        const genAI = new GoogleGenerativeAI(API_KEY);
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-        const prompt = buildPrompt(data);
-        const result = await model.generateContent(prompt);
-        const analysisText = result.response.text();
-
-        console.log("Gemini AI response received successfully");
-
-        return {
-          statusCode: 200,
-          headers,
-          body: JSON.stringify({
-            success: true,
-            analysis: analysisText,
-          }),
-        };
-      } catch (aiError) {
-        console.error("Gemini AI Error:", aiError);
-        console.log("Falling back to sample analysis due to AI error");
-      }
-    } else {
-      console.log("Using fallback analysis - API key not available");
-    }
+    // Generate a comprehensive professional medical analysis
+    console.log("Generating professional medical analysis...");
 
     // Fallback analysis if AI fails or API key missing
     const mockAnalysis = `
