@@ -279,14 +279,14 @@ export const handler: Handler = async (event) => {
 
     const professionalAnalysis = `
 <div style="color: #dc2626; font-weight: bold; padding: 12px; background-color: #fef2f2; border-radius: 8px; margin-bottom: 16px;">
-⚠️ Disclaimer: This is a clinical assistance tool and not a substitute for professional medical diagnosis. You must consult a qualified healthcare professional for any health concerns.
+Disclaimer: This is a clinical assistance tool and not a substitute for professional medical diagnosis. You must consult a qualified healthcare professional for any health concerns.
 </div>
 
-<h2 style="color: #0891b2; font-size: 24px; font-weight: bold; margin: 20px 0;">🏥 Preliminary SHD Assessment for ${data.name}</h2>
+<h2 style="color: #0891b2; font-size: 24px; font-weight: bold; margin: 20px 0;">Preliminary SHD Assessment for ${data.name}</h2>
 
 Hello ${data.name}, thank you for providing your information. Based on the details you've shared about your symptoms, lifestyle, and vitals, here is a detailed assessment.
 
-<h3 style="color: #059669; font-size: 18px; font-weight: bold; margin: 16px 0;">👤 Patient Information:</h3>
+<h3 style="color: #059669; font-size: 18px; font-weight: bold; margin: 16px 0;">Patient Information:</h3>
 - Name: ${data.name}<br>
 - Age: ${data.age} years (${data.ageGroup})<br>
 - Gender: ${data.gender}<br>
@@ -295,20 +295,20 @@ Hello ${data.name}, thank you for providing your information. Based on the detai
 - BMI: ${bmi}${bmi !== "Not calculated" ? (parseFloat(bmi) < 18.5 ? " (Underweight)" : parseFloat(bmi) < 25 ? " (Normal)" : parseFloat(bmi) < 30 ? " (Overweight)" : " (Obese)") : ""}<br>
 - Location: ${data.city}<br>
 
-<h3 style="color: #dc2626; font-size: 18px; font-weight: bold; margin: 16px 0;">💓 Vitals:</h3>
+<h3 style="color: #dc2626; font-size: 18px; font-weight: bold; margin: 16px 0;">Vitals:</h3>
 - Blood Pressure: ${data.bp}<br>
 - Heart Rate: ${data.hr} BPM<br>
 - SpO2: ${data.spo2}%<br>
 - Allergies: ${data.allergies}<br>
 
-<h3 style="color: #ea580c; font-size: 18px; font-weight: bold; margin: 16px 0;">⚠️ Risk Factors:</h3>
+<h3 style="color: #ea580c; font-size: 18px; font-weight: bold; margin: 16px 0;">Risk Factors:</h3>
 - Smoking: ${data.smoking}<br>
 - Alcohol: ${data.alcohol}<br>
 - Tobacco: ${data.tobacco}<br>
 - Hypertensive Drugs: ${data.hypertensive}<br>
 - Diabetes/High Sugar: ${data.diabetes}<br>
 
-<h3 style="color: #7c3aed; font-size: 18px; font-weight: bold; margin: 16px 0;">🩺 Symptoms Assessment:</h3>
+<h3 style="color: #7c3aed; font-size: 18px; font-weight: bold; margin: 16px 0;">Symptoms Assessment:</h3>
 - Cyanosis (Blue lips/skin): ${data.cyanosis}<br>
 - Chest Pain: ${data.chestPain}<br>
 - Fatigue: ${data.fatigue}<br>
@@ -319,20 +319,20 @@ Hello ${data.name}, thank you for providing your information. Based on the detai
 - Feeding Issues: ${data.feeding}<br>
 - Additional Symptoms: ${data.symptoms}<br>
 
-<h3 style="color: #9333ea; font-size: 20px; font-weight: bold; margin: 20px 0;">📊 1. Estimated Risk Score for Structural Heart Disease</h3>
+<h3 style="color: #9333ea; font-size: 20px; font-weight: bold; margin: 20px 0;">1. Estimated Risk Score for Structural Heart Disease</h3>
 
 <div style="color: #dc2626; font-size: 16px; font-weight: bold;">Risk Score: ${riskScore}/10 (${riskLevel} Risk)</div>
 
 <div style="color: #059669; font-weight: bold; margin: 12px 0;">Primary Drivers of this Score:</div>
 ${riskFactors.length > 0 ? riskFactors.map((factor) => `- ${factor}`).join("\n") : "- No significant risk factors identified from the information provided"}
 
-<h3 style="color: #dc2626; font-size: 20px; font-weight: bold; margin: 20px 0;">🚨 2. Urgency for Cardiologist Consultation</h3>
+<h3 style="color: #dc2626; font-size: 20px; font-weight: bold; margin: 20px 0;">2. Urgency for Cardiologist Consultation</h3>
 
 <div style="color: ${urgency.includes("URGENT") ? "#dc2626" : "#ea580c"}; font-size: 16px; font-weight: bold;">${urgency.includes("URGENT") ? "YES, URGENT consultation is recommended" : "YES, consultation with a cardiologist is recommended"} - ${urgency}</div>
 
 ${riskScore >= 7 ? "The combination of symptoms suggests potential cardiac issues that require immediate evaluation." : "Based on the symptoms and risk factors, professional cardiac evaluation is advisable."}
 
-<h3 style="color: #0891b2; font-size: 18px; font-weight: bold; margin: 16px 0;">🔬 3. Suggested Next Steps & Diagnostic Tests</h3>
+<h3 style="color: #0891b2; font-size: 18px; font-weight: bold; margin: 16px 0;">3. Suggested Next Steps & Diagnostic Tests</h3>
 
 Your first step should be to see a General Physician or a Cardiologist. They will likely recommend the following tests:
 
@@ -343,7 +343,7 @@ Your first step should be to see a General Physician or a Cardiologist. They wil
 5. <strong>Chest X-ray:</strong> To evaluate heart size and lung condition<br>
 ${riskScore >= 6 ? "6. <strong>Stress Test:</strong> May be recommended based on symptoms<br>7. <strong>Holter Monitor:</strong> 24-hour heart rhythm monitoring if palpitations are frequent<br>" : ""}
 
-<h3 style="color: #7c3aed; font-size: 18px; font-weight: bold; margin: 16px 0;">🏥 4. Possible Structural Heart Disease (SHD) Conditions</h3>
+<h3 style="color: #7c3aed; font-size: 18px; font-weight: bold; margin: 16px 0;">4. Possible Structural Heart Disease (SHD) Conditions</h3>
 
 Based on your profile, a doctor would investigate several possibilities:
 
@@ -353,7 +353,7 @@ Based on your profile, a doctor would investigate several possibilities:
 - <strong>Coronary Artery Disease:</strong> Blockages in heart arteries<br>
 ${data.familyHistory === "Yes" ? "- <strong>Genetic Cardiomyopathies:</strong> Given family history, inherited heart conditions should be evaluated<br>" : ""}
 
-<h3 style="color: #059669; font-size: 18px; font-weight: bold; margin: 16px 0;">💬 5. What to Tell Your Doctor</h3>
+<h3 style="color: #059669; font-size: 18px; font-weight: bold; margin: 16px 0;">5. What to Tell Your Doctor</h3>
 
 Be clear and specific. Create a list so you don't forget anything:
 
@@ -364,7 +364,7 @@ Be clear and specific. Create a list so you don't forget anything:
 - "${data.familyHistory === "Yes" ? "I have a family history of heart disease" : "No known family history of heart disease"}"<br>
 - Mention any medications you're currently taking<br>
 
-<h3 style="color: #dc2626; font-size: 18px; font-weight: bold; margin: 16px 0;">🏥 6. Cardiac Hospitals in ${data.city || "Your Area"}, India</h3>
+<h3 style="color: #dc2626; font-size: 18px; font-weight: bold; margin: 16px 0;">6. Cardiac Hospitals in ${data.city || "Your Area"}, India</h3>
 
 Here are types of facilities to look for in ${data.city || "your city"}:
 
@@ -374,7 +374,7 @@ Here are types of facilities to look for in ${data.city || "your city"}:
 
 <em>Consult local medical directories or online resources for specific hospitals in your area.</em>
 
-<h3 style="color: #ea580c; font-size: 18px; font-weight: bold; margin: 16px 0;">🌍 7. Alternative Screening for Rural/Low-Resource Settings</h3>
+<h3 style="color: #ea580c; font-size: 18px; font-weight: bold; margin: 16px 0;">7. Alternative Screening for Rural/Low-Resource Settings</h3>
 
 If access to a cardiologist is difficult or delayed:
 
@@ -383,7 +383,7 @@ If access to a cardiologist is difficult or delayed:
 - <strong>Telemedicine Consultation:</strong> Many hospitals now offer remote cardiology consultations<br>
 - <strong>Mobile Health Camps:</strong> Look out for cardiac screening camps in your area<br>
 
-<h3 style="color: #dc2626; font-size: 18px; font-weight: bold; margin: 16px 0;">🚨 8. Red Flags & Continuous Care Advice</h3>
+<h3 style="color: #dc2626; font-size: 18px; font-weight: bold; margin: 16px 0;">8. Red Flags & Continuous Care Advice</h3>
 
 <div style="color: #dc2626; font-weight: bold; margin: 12px 0;">Red Flags: Seek IMMEDIATE emergency care if you experience:</div>
 - Severe crushing chest pain lasting more than a few minutes<br>
@@ -403,7 +403,7 @@ If access to a cardiologist is difficult or delayed:
 
 <hr style="margin: 20px 0; border: 1px solid #ccc;">
 
-<h3 style="color: #0891b2; font-size: 20px; font-weight: bold; margin: 20px 0;">👨‍⚕️ Doctor's Summary</h3>
+<h3 style="color: #0891b2; font-size: 20px; font-weight: bold; margin: 20px 0;">Doctor's Summary</h3>
 
 <strong>Patient:</strong> ${data.name}, ${data.age}-year-old ${data.gender} from ${data.city || "Unknown location"}.<br><br>
 
