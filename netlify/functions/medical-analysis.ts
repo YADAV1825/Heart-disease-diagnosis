@@ -353,7 +353,7 @@ Based on your profile, a doctor would investigate several possibilities:
 - <strong>Coronary Artery Disease:</strong> Blockages in heart arteries
 ${data.familyHistory === "Yes" ? "- <strong>Genetic Cardiomyopathies:</strong> Given family history, inherited heart conditions should be evaluated" : ""}
 
-#### **5. What to Tell Your Doctor**
+<h3 style="color: #059669; font-size: 18px; font-weight: bold; margin: 16px 0;">💬 5. What to Tell Your Doctor</h3>
 
 Be clear and specific. Create a list so you don't forget anything:
 
@@ -364,15 +364,15 @@ Be clear and specific. Create a list so you don't forget anything:
 - "${data.familyHistory === "Yes" ? "I have a family history of heart disease" : "No known family history of heart disease"}"
 - Mention any medications you're currently taking
 
-#### **6. Cardiac Hospitals in ${data.city || "Your Area"}, India**
+<h3 style="color: #dc2626; font-size: 18px; font-weight: bold; margin: 16px 0;">🏥 6. Cardiac Hospitals in ${data.city || "Your Area"}, India</h3>
 
 Here are types of facilities to look for in ${data.city || "your city"}:
 
-1. **Government Medical Colleges:** Often have excellent cardiology departments with experienced doctors
-2. **Multi-specialty Private Hospitals:** Usually have advanced cardiac care units and latest equipment
-3. **Dedicated Heart Institutes:** Specialized cardiac centers with comprehensive heart care services
+1. <strong>Government Medical Colleges:</strong> Often have excellent cardiology departments with experienced doctors
+2. <strong>Multi-specialty Private Hospitals:</strong> Usually have advanced cardiac care units and latest equipment
+3. <strong>Dedicated Heart Institutes:</strong> Specialized cardiac centers with comprehensive heart care services
 
-*Consult local medical directories or online resources for specific hospitals in your area.*
+<em>Consult local medical directories or online resources for specific hospitals in your area.</em>
 
 #### **7. Alternative Screening for Rural/Low-Resource Settings**
 
