@@ -319,16 +319,16 @@ Hello ${data.name}, thank you for providing your information. Based on the detai
 - Feeding Issues: ${data.feeding}
 - Additional Symptoms: ${data.symptoms}
 
-#### **1. Estimated Risk Score for Structural Heart Disease**
+<h3 style="color: #9333ea; font-size: 20px; font-weight: bold; margin: 20px 0;">📊 1. Estimated Risk Score for Structural Heart Disease</h3>
 
-**Risk Score: ${riskScore}/10 (${riskLevel} Risk)**
+<div style="color: #dc2626; font-size: 16px; font-weight: bold;">Risk Score: ${riskScore}/10 (${riskLevel} Risk)</div>
 
-**Primary Drivers of this Score:**
+<div style="color: #059669; font-weight: bold; margin: 12px 0;">Primary Drivers of this Score:</div>
 ${riskFactors.length > 0 ? riskFactors.map((factor) => `- ${factor}`).join("\n") : "- No significant risk factors identified from the information provided"}
 
-#### **2. Urgency for Cardiologist Consultation**
+<h3 style="color: #dc2626; font-size: 20px; font-weight: bold; margin: 20px 0;">🚨 2. Urgency for Cardiologist Consultation</h3>
 
-**${urgency.includes("URGENT") ? "YES, URGENT consultation is recommended" : "YES, consultation with a cardiologist is recommended"} - ${urgency}**
+<div style="color: ${urgency.includes("URGENT") ? "#dc2626" : "#ea580c"}; font-size: 16px; font-weight: bold;">${urgency.includes("URGENT") ? "YES, URGENT consultation is recommended" : "YES, consultation with a cardiologist is recommended"} - ${urgency}</div>
 
 ${riskScore >= 7 ? "The combination of symptoms suggests potential cardiac issues that require immediate evaluation." : "Based on the symptoms and risk factors, professional cardiac evaluation is advisable."}
 
