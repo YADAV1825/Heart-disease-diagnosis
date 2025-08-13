@@ -1,9 +1,8 @@
 import { RequestHandler } from "express";
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import { MedicalAnalysisRequest, MedicalAnalysisResponse } from "@shared/api";
 
-// For demo purposes, using professional mock analysis
-console.log("Medical analysis service initialized with professional assessment algorithms");
+// Professional medical analysis service - demo version
+console.log("Medical analysis service initialized");
 
 function buildPrompt(data: MedicalAnalysisRequest): string {
   return `
