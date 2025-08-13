@@ -340,31 +340,54 @@ Hello <strong>${data.name}</strong>, thank you for providing your information. B
 </div>
 </div>
 
-#### **1. Estimated Risk Score for Structural Heart Disease**
+<div class="risk-assessment-section">
+<h3 class="section-title">📊 1. Estimated Risk Score for Structural Heart Disease</h3>
+<div class="risk-score-card">
+<div class="score-display">
+<span class="score-label">Risk Score:</span>
+<span class="score-value risk-${riskLevel.toLowerCase()}">${riskScore}/10</span>
+<span class="risk-badge risk-${riskLevel.toLowerCase()}">${riskLevel} Risk</span>
+</div>
+</div>
 
-**Risk Score: ${riskScore}/10 (${riskLevel} Risk)**
+<div class="risk-drivers">
+<h4 class="subsection-title">Primary Drivers of this Score:</h4>
+<div class="drivers-list">
+${riskFactors.length > 0 ? riskFactors.map((factor) => `<div class="driver-item">🔹 ${factor}</div>`).join("") : "<div class='driver-item'>🔹 No significant risk factors identified from the information provided</div>"}
+</div>
+</div>
+</div>
 
-**Primary Drivers of this Score:**
-${riskFactors.length > 0 ? riskFactors.map((factor) => `- ${factor}`).join("\n") : "- No significant risk factors identified from the information provided"}
-
-#### **2. Urgency for Cardiologist Consultation**
-
-**${urgency.includes("URGENT") ? "YES, URGENT consultation is recommended" : "YES, consultation with a cardiologist is recommended"} - ${urgency}**
-
+<div class="urgency-section">
+<h3 class="section-title">🚨 2. Urgency for Cardiologist Consultation</h3>
+<div class="urgency-card ${urgency.includes('URGENT') ? 'urgent-high' : 'urgent-moderate'}">
+<div class="urgency-text">
+<strong>${urgency.includes("URGENT") ? "YES, URGENT consultation is recommended" : "YES, consultation with a cardiologist is recommended"}</strong>
+</div>
+<div class="urgency-timeline">${urgency}</div>
+</div>
+<div class="urgency-explanation">
 ${riskScore >= 7 ? "The combination of symptoms suggests potential cardiac issues that require immediate evaluation." : "Based on the symptoms and risk factors, professional cardiac evaluation is advisable."}
+</div>
+</div>
 
-#### **3. Suggested Next Steps & Diagnostic Tests**
-
+<div class="tests-section">
+<h3 class="section-title">🔬 3. Suggested Next Steps & Diagnostic Tests</h3>
+<div class="tests-intro">
 Your first step should be to see a General Physician or a Cardiologist. They will likely recommend the following tests:
+</div>
+<div class="tests-list">
+<div class="test-item"><span class="test-number">1.</span> <span class="test-name">Clinical Examination:</span> <span class="test-description">Physical examination including heart auscultation to listen for murmurs or irregular sounds</span></div>
+<div class="test-item"><span class="test-number">2.</span> <span class="test-name">Electrocardiogram (ECG/EKG):</span> <span class="test-description">Records heart's electrical activity to detect rhythm abnormalities</span></div>
+<div class="test-item"><span class="test-number">3.</span> <span class="test-name">Echocardiogram (ECHO):</span> <span class="test-description">Ultrasound of the heart to assess structure, chamber size, and valve function</span></div>
+<div class="test-item"><span class="test-number">4.</span> <span class="test-name">Blood Tests:</span> <span class="test-description">Complete blood panel, lipid profile, and cardiac enzymes if indicated</span></div>
+<div class="test-item"><span class="test-number">5.</span> <span class="test-name">Chest X-ray:</span> <span class="test-description">To evaluate heart size and lung condition</span></div>
+${riskScore >= 6 ? '<div class="test-item"><span class="test-number">6.</span> <span class="test-name">Stress Test:</span> <span class="test-description">May be recommended based on symptoms</span></div><div class="test-item"><span class="test-number">7.</span> <span class="test-name">Holter Monitor:</span> <span class="test-description">24-hour heart rhythm monitoring if palpitations are frequent</span></div>' : ""}
+</div>
+</div>
 
-1. **Clinical Examination:** Physical examination including heart auscultation to listen for murmurs or irregular sounds
-2. **Electrocardiogram (ECG/EKG):** Records heart's electrical activity to detect rhythm abnormalities
-3. **Echocardiogram (ECHO):** Ultrasound of the heart to assess structure, chamber size, and valve function
-4. **Blood Tests:** Complete blood panel, lipid profile, and cardiac enzymes if indicated
-5. **Chest X-ray:** To evaluate heart size and lung condition
-${riskScore >= 6 ? "\n6. **Stress Test:** May be recommended based on symptoms\n7. **Holter Monitor:** 24-hour heart rhythm monitoring if palpitations are frequent" : ""}
-
-#### **4. Possible Structural Heart Disease (SHD) Conditions**
+<div class="conditions-section">
+<h3 class="section-title">🏥 4. Possible Structural Heart Disease (SHD) Conditions</h3>
 
 Based on your profile, a doctor would investigate several possibilities:
 
