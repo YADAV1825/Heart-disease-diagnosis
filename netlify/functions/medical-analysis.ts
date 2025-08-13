@@ -295,20 +295,20 @@ Hello ${data.name}, thank you for providing your information. Based on the detai
 - BMI: ${bmi}${bmi !== "Not calculated" ? (parseFloat(bmi) < 18.5 ? " (Underweight)" : parseFloat(bmi) < 25 ? " (Normal)" : parseFloat(bmi) < 30 ? " (Overweight)" : " (Obese)") : ""}
 - Location: ${data.city}
 
-**Vitals:**
+<h3 style="color: #dc2626; font-size: 18px; font-weight: bold; margin: 16px 0;">💓 Vitals:</h3>
 - Blood Pressure: ${data.bp}
 - Heart Rate: ${data.hr} BPM
 - SpO2: ${data.spo2}%
 - Allergies: ${data.allergies}
 
-**Risk Factors:**
+<h3 style="color: #ea580c; font-size: 18px; font-weight: bold; margin: 16px 0;">⚠️ Risk Factors:</h3>
 - Smoking: ${data.smoking}
 - Alcohol: ${data.alcohol}
 - Tobacco: ${data.tobacco}
 - Hypertensive Drugs: ${data.hypertensive}
 - Diabetes/High Sugar: ${data.diabetes}
 
-**Symptoms Assessment:**
+<h3 style="color: #7c3aed; font-size: 18px; font-weight: bold; margin: 16px 0;">🩺 Symptoms Assessment:</h3>
 - Cyanosis (Blue lips/skin): ${data.cyanosis}
 - Chest Pain: ${data.chestPain}
 - Fatigue: ${data.fatigue}
