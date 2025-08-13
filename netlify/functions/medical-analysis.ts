@@ -234,7 +234,7 @@ export const handler: Handler = async (event) => {
     console.log("API Key length:", API_KEY ? API_KEY.length : 0);
 
     // Try to call Gemini AI if available
-    if (API_KEY) {
+    if (API_KEY && GoogleGenerativeAI) {
       try {
         console.log("Attempting to call Gemini AI...");
         const genAI = new GoogleGenerativeAI(API_KEY);
@@ -259,9 +259,9 @@ export const handler: Handler = async (event) => {
         console.log("Falling back to sample analysis due to AI error");
       }
     } else {
-      console.log(
-        "Using fallback analysis - API key not available in environment",
-      );
+      console.log("Using fallback analysis - reasons:");
+      console.log("- API key available:", !!API_KEY);
+      console.log("- GoogleGenerativeAI imported:", !!GoogleGenerativeAI);
     }
 
     // Fallback analysis if AI fails or API key missing
