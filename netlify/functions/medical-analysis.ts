@@ -401,7 +401,7 @@ If access to a cardiologist is difficult or delayed:
       headers,
       body: JSON.stringify({
         success: true,
-        analysis: mockAnalysis,
+        analysis: professionalAnalysis,
       }),
     };
   } catch (error) {
