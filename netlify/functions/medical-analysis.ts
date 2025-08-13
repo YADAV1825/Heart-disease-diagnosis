@@ -386,20 +386,20 @@ If access to a cardiologist is difficult or delayed:
 <h3 style="color: #dc2626; font-size: 18px; font-weight: bold; margin: 16px 0;">🚨 8. Red Flags & Continuous Care Advice</h3>
 
 <div style="color: #dc2626; font-weight: bold; margin: 12px 0;">Red Flags: Seek IMMEDIATE emergency care if you experience:</div>
-- Severe crushing chest pain lasting more than a few minutes
-- Chest pain with sweating, nausea, or shortness of breath
-- Sudden severe shortness of breath
-- Fainting or near-fainting episodes
-- Severe dizziness with chest discomfort
-- Rapid or very irregular heartbeat with symptoms
+- Severe crushing chest pain lasting more than a few minutes<br>
+- Chest pain with sweating, nausea, or shortness of breath<br>
+- Sudden severe shortness of breath<br>
+- Fainting or near-fainting episodes<br>
+- Severe dizziness with chest discomfort<br>
+- Rapid or very irregular heartbeat with symptoms<br><br>
 
 <div style="color: #059669; font-weight: bold; margin: 12px 0;">Continuous Care Advice:</div>
-- <strong>Lifestyle Modifications:</strong> ${data.smoking === "Yes" ? "Quit smoking immediately - this is crucial for heart health" : "Continue avoiding smoking"}
-- <strong>Regular Monitoring:</strong> Keep track of blood pressure and heart rate
-- <strong>Diet:</strong> Heart-healthy diet low in salt, saturated fats, and rich in fruits and vegetables
-- <strong>Exercise:</strong> Regular moderate exercise as cleared by your doctor
-- <strong>Medication Compliance:</strong> Take prescribed medications exactly as directed
-- <strong>Follow-up:</strong> Keep all scheduled appointments with your healthcare providers
+- <strong>Lifestyle Modifications:</strong> ${data.smoking === "Yes" ? "Quit smoking immediately - this is crucial for heart health" : "Continue avoiding smoking"}<br>
+- <strong>Regular Monitoring:</strong> Keep track of blood pressure and heart rate<br>
+- <strong>Diet:</strong> Heart-healthy diet low in salt, saturated fats, and rich in fruits and vegetables<br>
+- <strong>Exercise:</strong> Regular moderate exercise as cleared by your doctor<br>
+- <strong>Medication Compliance:</strong> Take prescribed medications exactly as directed<br>
+- <strong>Follow-up:</strong> Keep all scheduled appointments with your healthcare providers<br>
 
 <hr style="margin: 20px 0; border: 1px solid #ccc;">
 
