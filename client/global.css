@@ -163,3 +163,316 @@
     transform: translateY(-10px);
   }
 }
+
+/* Medical Report Styling */
+.medical-report {
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  color: hsl(var(--foreground));
+}
+
+.disclaimer {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(245, 101, 101, 0.1));
+  border: 2px solid rgba(239, 68, 68, 0.3);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.report-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.patient-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: hsl(var(--medical-blue));
+  margin-bottom: 8px;
+}
+
+.patient-name {
+  color: hsl(var(--medical-teal));
+}
+
+.intro-text {
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.1), rgba(13, 148, 136, 0.1));
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+  font-size: 15px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: hsl(var(--medical-blue));
+  margin: 24px 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid hsl(var(--medical-teal));
+}
+
+.info-section, .vitals-section, .risk-factors-section, .symptoms-section {
+  margin-bottom: 24px;
+  background: hsl(var(--medical-teal) / 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid hsl(var(--medical-teal) / 0.2);
+}
+
+.info-grid, .vitals-grid, .risk-factors-grid, .symptoms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 12px;
+}
+
+.info-item, .vital-item, .risk-factor-item, .symptom-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  border: 1px solid hsl(var(--medical-blue) / 0.1);
+}
+
+.label, .vital-label, .risk-label, .symptom-label {
+  font-weight: 600;
+  color: hsl(var(--medical-blue));
+}
+
+.value, .vital-value {
+  color: hsl(var(--foreground));
+  font-weight: 500;
+}
+
+.bmi-value {
+  font-weight: 600;
+}
+
+.risk-value {
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.risk-high {
+  background: rgba(239, 68, 68, 0.2);
+  color: rgb(185, 28, 28);
+}
+
+.risk-moderate {
+  background: rgba(245, 158, 11, 0.2);
+  color: rgb(180, 83, 9);
+}
+
+.risk-low {
+  background: rgba(34, 197, 94, 0.2);
+  color: rgb(21, 128, 61);
+}
+
+.symptom-value {
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.symptom-present {
+  background: rgba(239, 68, 68, 0.2);
+  color: rgb(185, 28, 28);
+}
+
+.symptom-absent {
+  background: rgba(34, 197, 94, 0.2);
+  color: rgb(21, 128, 61);
+}
+
+.risk-assessment-section {
+  background: linear-gradient(135deg, hsl(var(--medical-purple) / 0.1), hsl(var(--medical-blue) / 0.1));
+  border-radius: 16px;
+  padding: 24px;
+  margin: 24px 0;
+  border: 2px solid hsl(var(--medical-purple) / 0.3);
+}
+
+.risk-score-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.score-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.score-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: hsl(var(--medical-blue));
+}
+
+.score-value {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.score-value.risk-low {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(21, 128, 61, 0.1));
+  color: rgb(21, 128, 61);
+}
+
+.score-value.risk-moderate {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(180, 83, 9, 0.1));
+  color: rgb(180, 83, 9);
+}
+
+.score-value.risk-high {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(185, 28, 28, 0.1));
+  color: rgb(185, 28, 28);
+}
+
+.risk-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.urgency-section {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(245, 101, 101, 0.05));
+  border-radius: 16px;
+  padding: 24px;
+  margin: 24px 0;
+  border: 2px solid rgba(239, 68, 68, 0.3);
+}
+
+.urgency-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.urgency-card.urgent-high {
+  border: 3px solid rgb(239, 68, 68);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(248, 113, 113, 0.05));
+}
+
+.urgency-card.urgent-moderate {
+  border: 3px solid rgb(245, 158, 11);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.05));
+}
+
+.urgency-text {
+  font-size: 18px;
+  color: hsl(var(--medical-blue));
+  margin-bottom: 8px;
+}
+
+.urgency-timeline {
+  font-size: 16px;
+  color: hsl(var(--medical-purple));
+  font-weight: 600;
+}
+
+.subsection-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: hsl(var(--medical-purple));
+  margin-bottom: 12px;
+}
+
+.drivers-list, .tests-list, .conditions-list, .advice-list, .hospitals-list, .alternative-list, .red-flags-list, .continuous-care-list {
+  margin-top: 16px;
+}
+
+.driver-item, .test-item, .condition-item, .advice-item, .hospital-item, .alternative-item, .red-flag-item, .care-item {
+  padding: 12px;
+  margin-bottom: 8px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  border-left: 4px solid hsl(var(--medical-teal));
+}
+
+.test-number {
+  font-weight: bold;
+  color: hsl(var(--medical-purple));
+  margin-right: 8px;
+}
+
+.test-name, .condition-name, .hospital-type, .alternative-type, .care-type {
+  font-weight: 600;
+  color: hsl(var(--medical-blue));
+}
+
+.test-description, .condition-description, .hospital-description, .alternative-description, .care-description {
+  color: hsl(var(--foreground));
+  margin-left: 8px;
+}
+
+.red-flag-item {
+  border-left-color: rgb(239, 68, 68);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.doctor-summary-section {
+  background: linear-gradient(135deg, hsl(var(--medical-blue) / 0.1), hsl(var(--medical-teal) / 0.1));
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 32px;
+  border: 2px solid hsl(var(--medical-blue) / 0.3);
+}
+
+.summary-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.summary-row {
+  display: flex;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid hsl(var(--medical-teal) / 0.2);
+}
+
+.summary-label {
+  font-weight: 600;
+  color: hsl(var(--medical-blue));
+  min-width: 140px;
+  margin-right: 16px;
+}
+
+.summary-value {
+  color: hsl(var(--foreground));
+  flex: 1;
+}
+
+.plan-list {
+  margin-top: 8px;
+}
+
+.plan-item {
+  padding: 8px 0;
+  color: hsl(var(--foreground));
+}
+
+.summary-note {
+  background: hsl(var(--medical-teal) / 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 20px;
+  font-size: 14px;
+  border: 1px solid hsl(var(--medical-teal) / 0.3);
+}
