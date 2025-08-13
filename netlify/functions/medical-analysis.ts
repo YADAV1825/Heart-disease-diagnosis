@@ -282,7 +282,7 @@ export const handler: Handler = async (event) => {
 ⚠️ Disclaimer: This is a clinical assistance tool and not a substitute for professional medical diagnosis. You must consult a qualified healthcare professional for any health concerns.
 </div>
 
-<h2 style="color: #0891b2; font-size: 24px; font-weight: bold; margin: 20px 0;">🏥 Preliminary SHD Assessment for ${data.name}</h2>
+<h2 style="color: #0891b2; font-size: 24px; font-weight: bold; margin: 20px 0;">��� Preliminary SHD Assessment for ${data.name}</h2>
 
 Hello ${data.name}, thank you for providing your information. Based on the details you've shared about your symptoms, lifestyle, and vitals, here is a detailed assessment.
 
@@ -368,9 +368,9 @@ Be clear and specific. Create a list so you don't forget anything:
 
 Here are types of facilities to look for in ${data.city || "your city"}:
 
-1. <strong>Government Medical Colleges:</strong> Often have excellent cardiology departments with experienced doctors
-2. <strong>Multi-specialty Private Hospitals:</strong> Usually have advanced cardiac care units and latest equipment
-3. <strong>Dedicated Heart Institutes:</strong> Specialized cardiac centers with comprehensive heart care services
+1. <strong>Government Medical Colleges:</strong> Often have excellent cardiology departments with experienced doctors<br>
+2. <strong>Multi-specialty Private Hospitals:</strong> Usually have advanced cardiac care units and latest equipment<br>
+3. <strong>Dedicated Heart Institutes:</strong> Specialized cardiac centers with comprehensive heart care services<br><br>
 
 <em>Consult local medical directories or online resources for specific hospitals in your area.</em>
 
