@@ -282,7 +282,7 @@ export const handler: Handler = async (event) => {
 ⚠️ Disclaimer: This is a clinical assistance tool and not a substitute for professional medical diagnosis. You must consult a qualified healthcare professional for any health concerns.
 </div>
 
-<h2 style="color: #0891b2; font-size: 24px; font-weight: bold; margin: 20px 0;">��� Preliminary SHD Assessment for ${data.name}</h2>
+<h2 style="color: #0891b2; font-size: 24px; font-weight: bold; margin: 20px 0;">🏥 Preliminary SHD Assessment for ${data.name}</h2>
 
 Hello ${data.name}, thank you for providing your information. Based on the details you've shared about your symptoms, lifestyle, and vitals, here is a detailed assessment.
 
@@ -378,10 +378,10 @@ Here are types of facilities to look for in ${data.city || "your city"}:
 
 If access to a cardiologist is difficult or delayed:
 
-- <strong>Primary Care Doctor:</strong> Can perform initial evaluation and refer appropriately
-- <strong>ECG at Local Clinic:</strong> Most basic health centers have ECG capability
-- <strong>Telemedicine Consultation:</strong> Many hospitals now offer remote cardiology consultations
-- <strong>Mobile Health Camps:</strong> Look out for cardiac screening camps in your area
+- <strong>Primary Care Doctor:</strong> Can perform initial evaluation and refer appropriately<br>
+- <strong>ECG at Local Clinic:</strong> Most basic health centers have ECG capability<br>
+- <strong>Telemedicine Consultation:</strong> Many hospitals now offer remote cardiology consultations<br>
+- <strong>Mobile Health Camps:</strong> Look out for cardiac screening camps in your area<br>
 
 <h3 style="color: #dc2626; font-size: 18px; font-weight: bold; margin: 16px 0;">🚨 8. Red Flags & Continuous Care Advice</h3>
 
