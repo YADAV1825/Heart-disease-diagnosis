@@ -401,27 +401,27 @@ If access to a cardiologist is difficult or delayed:
 - <strong>Medication Compliance:</strong> Take prescribed medications exactly as directed
 - <strong>Follow-up:</strong> Keep all scheduled appointments with your healthcare providers
 
----
+<hr style="margin: 20px 0; border: 1px solid #ccc;">
 
-### **Doctor's Summary**
+<h3 style="color: #0891b2; font-size: 20px; font-weight: bold; margin: 20px 0;">👨‍⚕️ Doctor's Summary</h3>
 
-**Patient:** ${data.name}, ${data.age}-year-old ${data.gender} from ${data.city || "Unknown location"}.
+<strong>Patient:</strong> ${data.name}, ${data.age}-year-old ${data.gender} from ${data.city || "Unknown location"}.
 
-**Presenting Complaint:** ${[data.chestPain === "Yes" && "chest pain", data.sob === "Yes" && "shortness of breath", data.fatigue === "Yes" && "fatigue", data.palpitations === "Yes" && "palpitations", data.syncope === "Yes" && "syncope"].filter(Boolean).join(", ") || "Cardiac screening request"}
+<strong>Presenting Complaint:</strong> ${[data.chestPain === "Yes" && "chest pain", data.sob === "Yes" && "shortness of breath", data.fatigue === "Yes" && "fatigue", data.palpitations === "Yes" && "palpitations", data.syncope === "Yes" && "syncope"].filter(Boolean).join(", ") || "Cardiac screening request"}
 
-**Vitals:** ${data.bp ? `BP: ${data.bp}, ` : ""}${data.hr ? `HR: ${data.hr} BPM, ` : ""}${data.spo2 ? `SpO2: ${data.spo2}%` : ""}
+<strong>Vitals:</strong> ${data.bp ? `BP: ${data.bp}, ` : ""}${data.hr ? `HR: ${data.hr} BPM, ` : ""}${data.spo2 ? `SpO2: ${data.spo2}%` : ""}
 
-**Risk Factors:** ${[data.smoking === "Yes" && "smoking", data.diabetes === "Yes" && "diabetes", data.familyHistory === "Yes" && "family history", data.hypertensive === "Yes" && "hypertensive medications"].filter(Boolean).join(", ") || "None identified"}
+<strong>Risk Factors:</strong> ${[data.smoking === "Yes" && "smoking", data.diabetes === "Yes" && "diabetes", data.familyHistory === "Yes" && "family history", data.hypertensive === "Yes" && "hypertensive medications"].filter(Boolean).join(", ") || "None identified"}
 
-**Assessment:** ${riskScore >= 7 ? "High-risk presentation requiring urgent cardiology evaluation" : riskScore >= 5 ? "Moderate risk requiring timely cardiology consultation" : "Low to moderate risk, routine cardiology evaluation recommended"}. ${riskScore >= 6 ? "Multiple risk factors present warrant comprehensive cardiac workup." : "Standard cardiac screening protocols apply."}
+<strong>Assessment:</strong> ${riskScore >= 7 ? "High-risk presentation requiring urgent cardiology evaluation" : riskScore >= 5 ? "Moderate risk requiring timely cardiology consultation" : "Low to moderate risk, routine cardiology evaluation recommended"}. ${riskScore >= 6 ? "Multiple risk factors present warrant comprehensive cardiac workup." : "Standard cardiac screening protocols apply."}
 
-**Recommended Plan:**
+<div style="color: #059669; font-weight: bold; margin: 12px 0;">Recommended Plan:</div>
 1. ${urgency.includes("URGENT") ? "Urgent cardiology consultation within 24-48 hours" : "Cardiology consultation within 2-4 weeks"}
 2. Initial workup: ECG, Echocardiogram, basic metabolic panel
 3. ${riskScore >= 6 ? "Consider stress testing and extended monitoring" : "Standard diagnostic workup as per cardiologist recommendation"}
 4. Lifestyle counseling regarding ${[data.smoking === "Yes" && "smoking cessation", "cardiac risk reduction", "regular follow-up"].filter(Boolean).join(", ")}
 
-**Note:** This assessment is based on provided information and should not replace professional medical evaluation. Seek immediate medical attention for any acute symptoms.
+<div style="color: #dc2626; font-style: italic; margin-top: 16px;"><strong>Note:</strong> This assessment is based on provided information and should not replace professional medical evaluation. Seek immediate medical attention for any acute symptoms.</div>
     `;
 
     return {
