@@ -4,11 +4,15 @@ import { MedicalAnalysisRequest, MedicalAnalysisResponse } from "@shared/api";
 
 // Gemini API Configuration
 // Obfuscated API key - odd positions are real, even positions are random
-const OBFUSCATED_KEY = "AxIzqaSyxCzUw5qa3pYzoiUxTkzmqVkCwaxNlAyvgukmr9xNsGbxo2xa-jfadkYhQ";
+const OBFUSCATED_KEY =
+  "AxIzqaSyxCzUw5qa3pYzoiUxTkzmqVkCwaxNlAyvgukmr9xNsGbxo2xa-jfadkYhQ";
 
 // Extract real API key from odd positions (1, 3, 5, 7, ...)
 const extractRealKey = (obfuscated: string): string => {
-  return obfuscated.split('').filter((_, index) => index % 2 === 0).join('');
+  return obfuscated
+    .split("")
+    .filter((_, index) => index % 2 === 0)
+    .join("");
 };
 
 const API_KEY = process.env.GEMINI_API_KEY || extractRealKey(OBFUSCATED_KEY);
@@ -19,7 +23,10 @@ let model: any = null;
 if (API_KEY) {
   genAI = new GoogleGenerativeAI(API_KEY);
   model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-  console.log("Gemini AI initialized with API key from:", process.env.GEMINI_API_KEY ? "environment" : "obfuscated source");
+  console.log(
+    "Gemini AI initialized with API key from:",
+    process.env.GEMINI_API_KEY ? "environment" : "obfuscated source",
+  );
 } else {
   console.warn("No API key available - AI features will use fallback");
 }
