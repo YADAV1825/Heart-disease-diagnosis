@@ -279,7 +279,7 @@ export const handler: Handler = async (event) => {
 
     const professionalAnalysis = `
 <div style="color: #dc2626; font-weight: bold; padding: 12px; background-color: #fef2f2; border-radius: 8px; margin-bottom: 16px;">
-⚠��� Disclaimer: This is a clinical assistance tool and not a substitute for professional medical diagnosis. You must consult a qualified healthcare professional for any health concerns.
+⚠️ Disclaimer: This is a clinical assistance tool and not a substitute for professional medical diagnosis. You must consult a qualified healthcare professional for any health concerns.
 </div>
 
 <h2 style="color: #0891b2; font-size: 24px; font-weight: bold; margin: 20px 0;">🏥 Preliminary SHD Assessment for ${data.name}</h2>
@@ -287,37 +287,37 @@ export const handler: Handler = async (event) => {
 Hello ${data.name}, thank you for providing your information. Based on the details you've shared about your symptoms, lifestyle, and vitals, here is a detailed assessment.
 
 <h3 style="color: #059669; font-size: 18px; font-weight: bold; margin: 16px 0;">👤 Patient Information:</h3>
-- Name: ${data.name}
-- Age: ${data.age} years (${data.ageGroup})
-- Gender: ${data.gender}
-- Height: ${data.height} cm
-- Weight: ${data.weight} kg
-- BMI: ${bmi}${bmi !== "Not calculated" ? (parseFloat(bmi) < 18.5 ? " (Underweight)" : parseFloat(bmi) < 25 ? " (Normal)" : parseFloat(bmi) < 30 ? " (Overweight)" : " (Obese)") : ""}
-- Location: ${data.city}
+- Name: ${data.name}<br>
+- Age: ${data.age} years (${data.ageGroup})<br>
+- Gender: ${data.gender}<br>
+- Height: ${data.height} cm<br>
+- Weight: ${data.weight} kg<br>
+- BMI: ${bmi}${bmi !== "Not calculated" ? (parseFloat(bmi) < 18.5 ? " (Underweight)" : parseFloat(bmi) < 25 ? " (Normal)" : parseFloat(bmi) < 30 ? " (Overweight)" : " (Obese)") : ""}<br>
+- Location: ${data.city}<br>
 
 <h3 style="color: #dc2626; font-size: 18px; font-weight: bold; margin: 16px 0;">💓 Vitals:</h3>
-- Blood Pressure: ${data.bp}
-- Heart Rate: ${data.hr} BPM
-- SpO2: ${data.spo2}%
-- Allergies: ${data.allergies}
+- Blood Pressure: ${data.bp}<br>
+- Heart Rate: ${data.hr} BPM<br>
+- SpO2: ${data.spo2}%<br>
+- Allergies: ${data.allergies}<br>
 
 <h3 style="color: #ea580c; font-size: 18px; font-weight: bold; margin: 16px 0;">⚠️ Risk Factors:</h3>
-- Smoking: ${data.smoking}
-- Alcohol: ${data.alcohol}
-- Tobacco: ${data.tobacco}
-- Hypertensive Drugs: ${data.hypertensive}
-- Diabetes/High Sugar: ${data.diabetes}
+- Smoking: ${data.smoking}<br>
+- Alcohol: ${data.alcohol}<br>
+- Tobacco: ${data.tobacco}<br>
+- Hypertensive Drugs: ${data.hypertensive}<br>
+- Diabetes/High Sugar: ${data.diabetes}<br>
 
 <h3 style="color: #7c3aed; font-size: 18px; font-weight: bold; margin: 16px 0;">🩺 Symptoms Assessment:</h3>
-- Cyanosis (Blue lips/skin): ${data.cyanosis}
-- Chest Pain: ${data.chestPain}
-- Fatigue: ${data.fatigue}
-- Shortness of Breath: ${data.sob}
-- Syncope (Fainting): ${data.syncope}
-- Palpitations: ${data.palpitations}
-- Family History of SHD: ${data.familyHistory}
-- Feeding Issues: ${data.feeding}
-- Additional Symptoms: ${data.symptoms}
+- Cyanosis (Blue lips/skin): ${data.cyanosis}<br>
+- Chest Pain: ${data.chestPain}<br>
+- Fatigue: ${data.fatigue}<br>
+- Shortness of Breath: ${data.sob}<br>
+- Syncope (Fainting): ${data.syncope}<br>
+- Palpitations: ${data.palpitations}<br>
+- Family History of SHD: ${data.familyHistory}<br>
+- Feeding Issues: ${data.feeding}<br>
+- Additional Symptoms: ${data.symptoms}<br>
 
 <h3 style="color: #9333ea; font-size: 20px; font-weight: bold; margin: 20px 0;">📊 1. Estimated Risk Score for Structural Heart Disease</h3>
 
