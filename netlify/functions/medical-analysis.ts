@@ -278,44 +278,67 @@ export const handler: Handler = async (event) => {
           : "Routine consultation recommended";
 
     const professionalAnalysis = `
-**Disclaimer:** This is a clinical assistance tool and not a substitute for professional medical diagnosis. You must consult a qualified healthcare professional for any health concerns.
+<div class="medical-report">
+<div class="disclaimer">
+<strong>⚠️ Disclaimer:</strong> This is a clinical assistance tool and not a substitute for professional medical diagnosis. You must consult a qualified healthcare professional for any health concerns.
+</div>
 
-### **Preliminary SHD Assessment for ${data.name}**
+<div class="report-header">
+<h2 class="patient-title">🏥 Preliminary SHD Assessment for <span class="patient-name">${data.name}</span></h2>
+</div>
 
-Hello ${data.name}, thank you for providing your information. Based on the details you've shared about your symptoms, lifestyle, and vitals, here is a detailed assessment.
+<div class="intro-text">
+Hello <strong>${data.name}</strong>, thank you for providing your information. Based on the details you've shared about your symptoms, lifestyle, and vitals, here is a detailed assessment.
+</div>
 
-**Patient Information:**
-- Name: ${data.name}
-- Age: ${data.age} years (${data.ageGroup})
-- Gender: ${data.gender}
-- Height: ${data.height} cm
-- Weight: ${data.weight} kg
-- BMI: ${bmi}${bmi !== "Not calculated" ? (parseFloat(bmi) < 18.5 ? " (Underweight)" : parseFloat(bmi) < 25 ? " (Normal)" : parseFloat(bmi) < 30 ? " (Overweight)" : " (Obese)") : ""}
-- Location: ${data.city}
+<div class="info-section">
+<h3 class="section-title">👤 Patient Information</h3>
+<div class="info-grid">
+<div class="info-item"><span class="label">Name:</span> <span class="value">${data.name}</span></div>
+<div class="info-item"><span class="label">Age:</span> <span class="value">${data.age} years (${data.ageGroup})</span></div>
+<div class="info-item"><span class="label">Gender:</span> <span class="value">${data.gender}</span></div>
+<div class="info-item"><span class="label">Height:</span> <span class="value">${data.height} cm</span></div>
+<div class="info-item"><span class="label">Weight:</span> <span class="value">${data.weight} kg</span></div>
+<div class="info-item"><span class="label">BMI:</span> <span class="value bmi-value">${bmi}${bmi !== "Not calculated" ? (parseFloat(bmi) < 18.5 ? " (Underweight)" : parseFloat(bmi) < 25 ? " (Normal)" : parseFloat(bmi) < 30 ? " (Overweight)" : " (Obese)") : ""}</span></div>
+<div class="info-item"><span class="label">Location:</span> <span class="value">${data.city}</span></div>
+</div>
+</div>
 
-**Vitals:**
-- Blood Pressure: ${data.bp}
-- Heart Rate: ${data.hr} BPM
-- SpO2: ${data.spo2}%
-- Allergies: ${data.allergies}
+<div class="vitals-section">
+<h3 class="section-title">💓 Vitals</h3>
+<div class="vitals-grid">
+<div class="vital-item"><span class="vital-label">Blood Pressure:</span> <span class="vital-value">${data.bp}</span></div>
+<div class="vital-item"><span class="vital-label">Heart Rate:</span> <span class="vital-value">${data.hr} BPM</span></div>
+<div class="vital-item"><span class="vital-label">SpO2:</span> <span class="vital-value">${data.spo2}%</span></div>
+<div class="vital-item"><span class="vital-label">Allergies:</span> <span class="vital-value">${data.allergies || "None reported"}</span></div>
+</div>
+</div>
 
-**Risk Factors:**
-- Smoking: ${data.smoking}
-- Alcohol: ${data.alcohol}
-- Tobacco: ${data.tobacco}
-- Hypertensive Drugs: ${data.hypertensive}
-- Diabetes/High Sugar: ${data.diabetes}
+<div class="risk-factors-section">
+<h3 class="section-title">⚠️ Risk Factors</h3>
+<div class="risk-factors-grid">
+<div class="risk-factor-item"><span class="risk-label">Smoking:</span> <span class="risk-value ${data.smoking === 'Yes' ? 'risk-high' : 'risk-low'}">${data.smoking}</span></div>
+<div class="risk-factor-item"><span class="risk-label">Alcohol:</span> <span class="risk-value ${data.alcohol === 'Daily' || data.alcohol === 'Weekly' ? 'risk-high' : 'risk-low'}">${data.alcohol}</span></div>
+<div class="risk-factor-item"><span class="risk-label">Tobacco:</span> <span class="risk-value ${data.tobacco === 'Yes' ? 'risk-high' : 'risk-low'}">${data.tobacco}</span></div>
+<div class="risk-factor-item"><span class="risk-label">Hypertensive Drugs:</span> <span class="risk-value ${data.hypertensive === 'Yes' ? 'risk-moderate' : 'risk-low'}">${data.hypertensive}</span></div>
+<div class="risk-factor-item"><span class="risk-label">Diabetes/High Sugar:</span> <span class="risk-value ${data.diabetes === 'Yes' ? 'risk-high' : 'risk-low'}">${data.diabetes}</span></div>
+</div>
+</div>
 
-**Symptoms Assessment:**
-- Cyanosis (Blue lips/skin): ${data.cyanosis}
-- Chest Pain: ${data.chestPain}
-- Fatigue: ${data.fatigue}
-- Shortness of Breath: ${data.sob}
-- Syncope (Fainting): ${data.syncope}
-- Palpitations: ${data.palpitations}
-- Family History of SHD: ${data.familyHistory}
-- Feeding Issues: ${data.feeding}
-- Additional Symptoms: ${data.symptoms}
+<div class="symptoms-section">
+<h3 class="section-title">🩺 Symptoms Assessment</h3>
+<div class="symptoms-grid">
+<div class="symptom-item"><span class="symptom-label">Cyanosis (Blue lips/skin):</span> <span class="symptom-value ${data.cyanosis === 'Yes' ? 'symptom-present' : 'symptom-absent'}">${data.cyanosis}</span></div>
+<div class="symptom-item"><span class="symptom-label">Chest Pain:</span> <span class="symptom-value ${data.chestPain === 'Yes' ? 'symptom-present' : 'symptom-absent'}">${data.chestPain}</span></div>
+<div class="symptom-item"><span class="symptom-label">Fatigue:</span> <span class="symptom-value ${data.fatigue === 'Yes' ? 'symptom-present' : 'symptom-absent'}">${data.fatigue}</span></div>
+<div class="symptom-item"><span class="symptom-label">Shortness of Breath:</span> <span class="symptom-value ${data.sob === 'Yes' ? 'symptom-present' : 'symptom-absent'}">${data.sob}</span></div>
+<div class="symptom-item"><span class="symptom-label">Syncope (Fainting):</span> <span class="symptom-value ${data.syncope === 'Yes' ? 'symptom-present' : 'symptom-absent'}">${data.syncope}</span></div>
+<div class="symptom-item"><span class="symptom-label">Palpitations:</span> <span class="symptom-value ${data.palpitations === 'Yes' ? 'symptom-present' : 'symptom-absent'}">${data.palpitations}</span></div>
+<div class="symptom-item"><span class="symptom-label">Family History of SHD:</span> <span class="symptom-value ${data.familyHistory === 'Yes' ? 'symptom-present' : 'symptom-absent'}">${data.familyHistory}</span></div>
+<div class="symptom-item"><span class="symptom-label">Feeding Issues:</span> <span class="symptom-value ${data.feeding === 'Yes' ? 'symptom-present' : 'symptom-absent'}">${data.feeding}</span></div>
+<div class="symptom-item"><span class="symptom-label">Additional Symptoms:</span> <span class="symptom-value">${data.symptoms || "None reported"}</span></div>
+</div>
+</div>
 
 #### **1. Estimated Risk Score for Structural Heart Disease**
 
