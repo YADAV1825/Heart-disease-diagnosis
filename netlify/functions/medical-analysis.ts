@@ -233,7 +233,7 @@ export const handler: Handler = async (event) => {
     console.log("API Key source:", process.env.GEMINI_API_KEY ? "environment" : "obfuscated");
 
     // Try to call Gemini AI if available
-    if (API_KEY && GoogleGenerativeAI) {
+    if (API_KEY) {
       try {
         console.log("Attempting to call Gemini AI...");
         const genAI = new GoogleGenerativeAI(API_KEY);
