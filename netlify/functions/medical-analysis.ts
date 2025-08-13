@@ -278,241 +278,148 @@ export const handler: Handler = async (event) => {
           : "Routine consultation recommended";
 
     const professionalAnalysis = `
-<div class="medical-report">
-<div class="disclaimer">
-<strong>⚠️ Disclaimer:</strong> This is a clinical assistance tool and not a substitute for professional medical diagnosis. You must consult a qualified healthcare professional for any health concerns.
-</div>
+**Disclaimer:** This is a clinical assistance tool and not a substitute for professional medical diagnosis. You must consult a qualified healthcare professional for any health concerns.
 
-<div class="report-header">
-<h2 class="patient-title">🏥 Preliminary SHD Assessment for <span class="patient-name">${data.name}</span></h2>
-</div>
+### **Preliminary SHD Assessment for ${data.name}**
 
-<div class="intro-text">
-Hello <strong>${data.name}</strong>, thank you for providing your information. Based on the details you've shared about your symptoms, lifestyle, and vitals, here is a detailed assessment.
-</div>
+Hello ${data.name}, thank you for providing your information. Based on the details you've shared about your symptoms, lifestyle, and vitals, here is a detailed assessment.
 
-<div class="info-section">
-<h3 class="section-title">👤 Patient Information</h3>
-<div class="info-grid">
-<div class="info-item"><span class="label">Name:</span> <span class="value">${data.name}</span></div>
-<div class="info-item"><span class="label">Age:</span> <span class="value">${data.age} years (${data.ageGroup})</span></div>
-<div class="info-item"><span class="label">Gender:</span> <span class="value">${data.gender}</span></div>
-<div class="info-item"><span class="label">Height:</span> <span class="value">${data.height} cm</span></div>
-<div class="info-item"><span class="label">Weight:</span> <span class="value">${data.weight} kg</span></div>
-<div class="info-item"><span class="label">BMI:</span> <span class="value bmi-value">${bmi}${bmi !== "Not calculated" ? (parseFloat(bmi) < 18.5 ? " (Underweight)" : parseFloat(bmi) < 25 ? " (Normal)" : parseFloat(bmi) < 30 ? " (Overweight)" : " (Obese)") : ""}</span></div>
-<div class="info-item"><span class="label">Location:</span> <span class="value">${data.city}</span></div>
-</div>
-</div>
+**Patient Information:**
+- Name: ${data.name}
+- Age: ${data.age} years (${data.ageGroup})
+- Gender: ${data.gender}
+- Height: ${data.height} cm
+- Weight: ${data.weight} kg
+- BMI: ${bmi}${bmi !== "Not calculated" ? (parseFloat(bmi) < 18.5 ? " (Underweight)" : parseFloat(bmi) < 25 ? " (Normal)" : parseFloat(bmi) < 30 ? " (Overweight)" : " (Obese)") : ""}
+- Location: ${data.city}
 
-<div class="vitals-section">
-<h3 class="section-title">💓 Vitals</h3>
-<div class="vitals-grid">
-<div class="vital-item"><span class="vital-label">Blood Pressure:</span> <span class="vital-value">${data.bp}</span></div>
-<div class="vital-item"><span class="vital-label">Heart Rate:</span> <span class="vital-value">${data.hr} BPM</span></div>
-<div class="vital-item"><span class="vital-label">SpO2:</span> <span class="vital-value">${data.spo2}%</span></div>
-<div class="vital-item"><span class="vital-label">Allergies:</span> <span class="vital-value">${data.allergies || "None reported"}</span></div>
-</div>
-</div>
+**Vitals:**
+- Blood Pressure: ${data.bp}
+- Heart Rate: ${data.hr} BPM
+- SpO2: ${data.spo2}%
+- Allergies: ${data.allergies}
 
-<div class="risk-factors-section">
-<h3 class="section-title">⚠️ Risk Factors</h3>
-<div class="risk-factors-grid">
-<div class="risk-factor-item"><span class="risk-label">Smoking:</span> <span class="risk-value ${data.smoking === 'Yes' ? 'risk-high' : 'risk-low'}">${data.smoking}</span></div>
-<div class="risk-factor-item"><span class="risk-label">Alcohol:</span> <span class="risk-value ${data.alcohol === 'Daily' || data.alcohol === 'Weekly' ? 'risk-high' : 'risk-low'}">${data.alcohol}</span></div>
-<div class="risk-factor-item"><span class="risk-label">Tobacco:</span> <span class="risk-value ${data.tobacco === 'Yes' ? 'risk-high' : 'risk-low'}">${data.tobacco}</span></div>
-<div class="risk-factor-item"><span class="risk-label">Hypertensive Drugs:</span> <span class="risk-value ${data.hypertensive === 'Yes' ? 'risk-moderate' : 'risk-low'}">${data.hypertensive}</span></div>
-<div class="risk-factor-item"><span class="risk-label">Diabetes/High Sugar:</span> <span class="risk-value ${data.diabetes === 'Yes' ? 'risk-high' : 'risk-low'}">${data.diabetes}</span></div>
-</div>
-</div>
+**Risk Factors:**
+- Smoking: ${data.smoking}
+- Alcohol: ${data.alcohol}
+- Tobacco: ${data.tobacco}
+- Hypertensive Drugs: ${data.hypertensive}
+- Diabetes/High Sugar: ${data.diabetes}
 
-<div class="symptoms-section">
-<h3 class="section-title">🩺 Symptoms Assessment</h3>
-<div class="symptoms-grid">
-<div class="symptom-item"><span class="symptom-label">Cyanosis (Blue lips/skin):</span> <span class="symptom-value ${data.cyanosis === 'Yes' ? 'symptom-present' : 'symptom-absent'}">${data.cyanosis}</span></div>
-<div class="symptom-item"><span class="symptom-label">Chest Pain:</span> <span class="symptom-value ${data.chestPain === 'Yes' ? 'symptom-present' : 'symptom-absent'}">${data.chestPain}</span></div>
-<div class="symptom-item"><span class="symptom-label">Fatigue:</span> <span class="symptom-value ${data.fatigue === 'Yes' ? 'symptom-present' : 'symptom-absent'}">${data.fatigue}</span></div>
-<div class="symptom-item"><span class="symptom-label">Shortness of Breath:</span> <span class="symptom-value ${data.sob === 'Yes' ? 'symptom-present' : 'symptom-absent'}">${data.sob}</span></div>
-<div class="symptom-item"><span class="symptom-label">Syncope (Fainting):</span> <span class="symptom-value ${data.syncope === 'Yes' ? 'symptom-present' : 'symptom-absent'}">${data.syncope}</span></div>
-<div class="symptom-item"><span class="symptom-label">Palpitations:</span> <span class="symptom-value ${data.palpitations === 'Yes' ? 'symptom-present' : 'symptom-absent'}">${data.palpitations}</span></div>
-<div class="symptom-item"><span class="symptom-label">Family History of SHD:</span> <span class="symptom-value ${data.familyHistory === 'Yes' ? 'symptom-present' : 'symptom-absent'}">${data.familyHistory}</span></div>
-<div class="symptom-item"><span class="symptom-label">Feeding Issues:</span> <span class="symptom-value ${data.feeding === 'Yes' ? 'symptom-present' : 'symptom-absent'}">${data.feeding}</span></div>
-<div class="symptom-item"><span class="symptom-label">Additional Symptoms:</span> <span class="symptom-value">${data.symptoms || "None reported"}</span></div>
-</div>
-</div>
+**Symptoms Assessment:**
+- Cyanosis (Blue lips/skin): ${data.cyanosis}
+- Chest Pain: ${data.chestPain}
+- Fatigue: ${data.fatigue}
+- Shortness of Breath: ${data.sob}
+- Syncope (Fainting): ${data.syncope}
+- Palpitations: ${data.palpitations}
+- Family History of SHD: ${data.familyHistory}
+- Feeding Issues: ${data.feeding}
+- Additional Symptoms: ${data.symptoms}
 
-<div class="risk-assessment-section">
-<h3 class="section-title">📊 1. Estimated Risk Score for Structural Heart Disease</h3>
-<div class="risk-score-card">
-<div class="score-display">
-<span class="score-label">Risk Score:</span>
-<span class="score-value risk-${riskLevel.toLowerCase()}">${riskScore}/10</span>
-<span class="risk-badge risk-${riskLevel.toLowerCase()}">${riskLevel} Risk</span>
-</div>
-</div>
+#### **1. Estimated Risk Score for Structural Heart Disease**
 
-<div class="risk-drivers">
-<h4 class="subsection-title">Primary Drivers of this Score:</h4>
-<div class="drivers-list">
-${riskFactors.length > 0 ? riskFactors.map((factor) => `<div class="driver-item">🔹 ${factor}</div>`).join("") : "<div class='driver-item'>🔹 No significant risk factors identified from the information provided</div>"}
-</div>
-</div>
-</div>
+**Risk Score: ${riskScore}/10 (${riskLevel} Risk)**
 
-<div class="urgency-section">
-<h3 class="section-title">🚨 2. Urgency for Cardiologist Consultation</h3>
-<div class="urgency-card ${urgency.includes('URGENT') ? 'urgent-high' : 'urgent-moderate'}">
-<div class="urgency-text">
-<strong>${urgency.includes("URGENT") ? "YES, URGENT consultation is recommended" : "YES, consultation with a cardiologist is recommended"}</strong>
-</div>
-<div class="urgency-timeline">${urgency}</div>
-</div>
-<div class="urgency-explanation">
+**Primary Drivers of this Score:**
+${riskFactors.length > 0 ? riskFactors.map((factor) => `- ${factor}`).join("\n") : "- No significant risk factors identified from the information provided"}
+
+#### **2. Urgency for Cardiologist Consultation**
+
+**${urgency.includes("URGENT") ? "YES, URGENT consultation is recommended" : "YES, consultation with a cardiologist is recommended"} - ${urgency}**
+
 ${riskScore >= 7 ? "The combination of symptoms suggests potential cardiac issues that require immediate evaluation." : "Based on the symptoms and risk factors, professional cardiac evaluation is advisable."}
-</div>
-</div>
 
-<div class="tests-section">
-<h3 class="section-title">🔬 3. Suggested Next Steps & Diagnostic Tests</h3>
-<div class="tests-intro">
+#### **3. Suggested Next Steps & Diagnostic Tests**
+
 Your first step should be to see a General Physician or a Cardiologist. They will likely recommend the following tests:
-</div>
-<div class="tests-list">
-<div class="test-item"><span class="test-number">1.</span> <span class="test-name">Clinical Examination:</span> <span class="test-description">Physical examination including heart auscultation to listen for murmurs or irregular sounds</span></div>
-<div class="test-item"><span class="test-number">2.</span> <span class="test-name">Electrocardiogram (ECG/EKG):</span> <span class="test-description">Records heart's electrical activity to detect rhythm abnormalities</span></div>
-<div class="test-item"><span class="test-number">3.</span> <span class="test-name">Echocardiogram (ECHO):</span> <span class="test-description">Ultrasound of the heart to assess structure, chamber size, and valve function</span></div>
-<div class="test-item"><span class="test-number">4.</span> <span class="test-name">Blood Tests:</span> <span class="test-description">Complete blood panel, lipid profile, and cardiac enzymes if indicated</span></div>
-<div class="test-item"><span class="test-number">5.</span> <span class="test-name">Chest X-ray:</span> <span class="test-description">To evaluate heart size and lung condition</span></div>
-${riskScore >= 6 ? '<div class="test-item"><span class="test-number">6.</span> <span class="test-name">Stress Test:</span> <span class="test-description">May be recommended based on symptoms</span></div><div class="test-item"><span class="test-number">7.</span> <span class="test-name">Holter Monitor:</span> <span class="test-description">24-hour heart rhythm monitoring if palpitations are frequent</span></div>' : ""}
-</div>
-</div>
 
-<div class="conditions-section">
-<h3 class="section-title">🏥 4. Possible Structural Heart Disease (SHD) Conditions</h3>
+1. **Clinical Examination:** Physical examination including heart auscultation to listen for murmurs or irregular sounds
+2. **Electrocardiogram (ECG/EKG):** Records heart's electrical activity to detect rhythm abnormalities
+3. **Echocardiogram (ECHO):** Ultrasound of the heart to assess structure, chamber size, and valve function
+4. **Blood Tests:** Complete blood panel, lipid profile, and cardiac enzymes if indicated
+5. **Chest X-ray:** To evaluate heart size and lung condition
+${riskScore >= 6 ? "\n6. **Stress Test:** May be recommended based on symptoms\n7. **Holter Monitor:** 24-hour heart rhythm monitoring if palpitations are frequent" : ""}
 
-<div class="conditions-intro">
+#### **4. Possible Structural Heart Disease (SHD) Conditions**
+
 Based on your profile, a doctor would investigate several possibilities:
-</div>
-<div class="conditions-list">
-<div class="condition-item"><span class="condition-name">Valvular Heart Disease:</span> <span class="condition-description">Conditions affecting heart valves (mitral, aortic, tricuspid, pulmonary)</span></div>
-<div class="condition-item"><span class="condition-name">Cardiomyopathy:</span> <span class="condition-description">Diseases of the heart muscle including hypertrophic, dilated, or restrictive types</span></div>
-<div class="condition-item"><span class="condition-name">Congenital Defects:</span> <span class="condition-description">Birth defects like atrial septal defect (ASD), ventricular septal defect (VSD)</span></div>
-<div class="condition-item"><span class="condition-name">Coronary Artery Disease:</span> <span class="condition-description">Blockages in heart arteries</span></div>
-${data.familyHistory === "Yes" ? '<div class="condition-item"><span class="condition-name">Genetic Cardiomyopathies:</span> <span class="condition-description">Given family history, inherited heart conditions should be evaluated</span></div>' : ""}
-</div>
-</div>
 
-<div class="doctor-advice-section">
-<h3 class="section-title">💬 5. What to Tell Your Doctor</h3>
-<div class="advice-intro">
+- **Valvular Heart Disease:** Conditions affecting heart valves (mitral, aortic, tricuspid, pulmonary)
+- **Cardiomyopathy:** Diseases of the heart muscle including hypertrophic, dilated, or restrictive types
+- **Congenital Defects:** Birth defects like atrial septal defect (ASD), ventricular septal defect (VSD)
+- **Coronary Artery Disease:** Blockages in heart arteries
+${data.familyHistory === "Yes" ? "- **Genetic Cardiomyopathies:** Given family history, inherited heart conditions should be evaluated" : ""}
+
+#### **5. What to Tell Your Doctor**
+
 Be clear and specific. Create a list so you don't forget anything:
-</div>
-<div class="advice-list">
-<div class="advice-item">🗣️ "I am here because I've been experiencing ${[data.chestPain === "Yes" && "chest pain", data.sob === "Yes" && "shortness of breath", data.palpitations === "Yes" && "palpitations", data.syncope === "Yes" && "fainting episodes"].filter(Boolean).join(", ") || "concerns about my heart health"}."</div>
-<div class="advice-item">📝 Describe the symptoms in detail: when they occur, how long they last, what triggers them</div>
-<div class="advice-item">📊 "My current vital signs include blood pressure of ${data.bp}, heart rate of ${data.hr} BPM"</div>
-<div class="advice-item">🚭 "${data.smoking === "Yes" ? "I am a smoker" : "I do not smoke"} and ${data.alcohol === "Yes" ? "I consume alcohol" : "I do not drink alcohol"}"</div>
-<div class="advice-item">👪 "${data.familyHistory === "Yes" ? "I have a family history of heart disease" : "No known family history of heart disease"}"</div>
-<div class="advice-item">💊 Mention any medications you're currently taking</div>
-</div>
-</div>
 
-<div class="hospitals-section">
-<h3 class="section-title">🏥 6. Cardiac Hospitals in ${data.city || "Your Area"}, India</h3>
-<div class="hospitals-intro">
+- "I am here because I've been experiencing ${[data.chestPain === "Yes" && "chest pain", data.sob === "Yes" && "shortness of breath", data.palpitations === "Yes" && "palpitations", data.syncope === "Yes" && "fainting episodes"].filter(Boolean).join(", ") || "concerns about my heart health"}."
+- Describe the symptoms in detail: when they occur, how long they last, what triggers them
+- "My current vital signs include blood pressure of ${data.bp}, heart rate of ${data.hr} BPM"
+- "${data.smoking === "Yes" ? "I am a smoker" : "I do not smoke"} and ${data.alcohol === "Yes" ? "I consume alcohol" : "I do not drink alcohol"}"
+- "${data.familyHistory === "Yes" ? "I have a family history of heart disease" : "No known family history of heart disease"}"
+- Mention any medications you're currently taking
+
+#### **6. Cardiac Hospitals in ${data.city || "Your Area"}, India**
+
 Here are types of facilities to look for in ${data.city || "your city"}:
-</div>
-<div class="hospitals-list">
-<div class="hospital-item"><span class="hospital-type">Government Medical Colleges:</span> <span class="hospital-description">Often have excellent cardiology departments with experienced doctors</span></div>
-<div class="hospital-item"><span class="hospital-type">Multi-specialty Private Hospitals:</span> <span class="hospital-description">Usually have advanced cardiac care units and latest equipment</span></div>
-<div class="hospital-item"><span class="hospital-type">Dedicated Heart Institutes:</span> <span class="hospital-description">Specialized cardiac centers with comprehensive heart care services</span></div>
-</div>
-<div class="hospitals-note">
-<em>Consult local medical directories or online resources for specific hospitals in your area.</em>
-</div>
-</div>
 
-<div class="alternative-section">
-<h3 class="section-title">🌍 7. Alternative Screening for Rural/Low-Resource Settings</h3>
-<div class="alternative-intro">
+1. **Government Medical Colleges:** Often have excellent cardiology departments with experienced doctors
+2. **Multi-specialty Private Hospitals:** Usually have advanced cardiac care units and latest equipment
+3. **Dedicated Heart Institutes:** Specialized cardiac centers with comprehensive heart care services
+
+*Consult local medical directories or online resources for specific hospitals in your area.*
+
+#### **7. Alternative Screening for Rural/Low-Resource Settings**
+
 If access to a cardiologist is difficult or delayed:
-</div>
-<div class="alternative-list">
-<div class="alternative-item"><span class="alternative-type">Primary Care Doctor:</span> <span class="alternative-description">Can perform initial evaluation and refer appropriately</span></div>
-<div class="alternative-item"><span class="alternative-type">ECG at Local Clinic:</span> <span class="alternative-description">Most basic health centers have ECG capability</span></div>
-<div class="alternative-item"><span class="alternative-type">Telemedicine Consultation:</span> <span class="alternative-description">Many hospitals now offer remote cardiology consultations</span></div>
-<div class="alternative-item"><span class="alternative-type">Mobile Health Camps:</span> <span class="alternative-description">Look out for cardiac screening camps in your area</span></div>
-</div>
-</div>
 
-<div class="red-flags-section">
-<h3 class="section-title">🚨 8. Red Flags & Continuous Care Advice</h3>
-<div class="red-flags">
-<h4 class="red-flags-title">Red Flags: Seek IMMEDIATE emergency care if you experience:</h4>
-<div class="red-flags-list">
-<div class="red-flag-item">⚠️ Severe crushing chest pain lasting more than a few minutes</div>
-<div class="red-flag-item">⚠️ Chest pain with sweating, nausea, or shortness of breath</div>
-<div class="red-flag-item">⚠️ Sudden severe shortness of breath</div>
-<div class="red-flag-item">⚠️ Fainting or near-fainting episodes</div>
-<div class="red-flag-item">⚠️ Severe dizziness with chest discomfort</div>
-<div class="red-flag-item">⚠️ Rapid or very irregular heartbeat with symptoms</div>
-</div>
-</div>
+- **Primary Care Doctor:** Can perform initial evaluation and refer appropriately
+- **ECG at Local Clinic:** Most basic health centers have ECG capability
+- **Telemedicine Consultation:** Many hospitals now offer remote cardiology consultations
+- **Mobile Health Camps:** Look out for cardiac screening camps in your area
 
-<div class="continuous-care-list">
-<div class="care-item"><span class="care-type">Lifestyle Modifications:</span> <span class="care-description">${data.smoking === "Yes" ? "Quit smoking immediately - this is crucial for heart health" : "Continue avoiding smoking"}</span></div>
-<div class="care-item"><span class="care-type">Regular Monitoring:</span> <span class="care-description">Keep track of blood pressure and heart rate</span></div>
-<div class="care-item"><span class="care-type">Diet:</span> <span class="care-description">Heart-healthy diet low in salt, saturated fats, and rich in fruits and vegetables</span></div>
-<div class="care-item"><span class="care-type">Exercise:</span> <span class="care-description">Regular moderate exercise as cleared by your doctor</span></div>
-<div class="care-item"><span class="care-type">Medication Compliance:</span> <span class="care-description">Take prescribed medications exactly as directed</span></div>
-<div class="care-item"><span class="care-type">Follow-up:</span> <span class="care-description">Keep all scheduled appointments with your healthcare providers</span></div>
-</div>
-</div>
-</div>
+#### **8. Red Flags & Continuous Care Advice**
 
-<div class="doctor-summary-section">
-<h3 class="section-title">👨‍⚕️ Doctor's Summary</h3>
-<div class="summary-card">
-<div class="summary-row">
-<span class="summary-label">Patient:</span>
-<span class="summary-value">${data.name}, ${data.age}-year-old ${data.gender} from ${data.city || "Unknown location"}</span>
-</div>
+**Red Flags: Seek IMMEDIATE emergency care if you experience:**
+- Severe crushing chest pain lasting more than a few minutes
+- Chest pain with sweating, nausea, or shortness of breath
+- Sudden severe shortness of breath
+- Fainting or near-fainting episodes
+- Severe dizziness with chest discomfort
+- Rapid or very irregular heartbeat with symptoms
 
-<div class="summary-row">
-<span class="summary-label">Presenting Complaint:</span>
-<span class="summary-value">${[data.chestPain === "Yes" && "chest pain", data.sob === "Yes" && "shortness of breath", data.fatigue === "Yes" && "fatigue", data.palpitations === "Yes" && "palpitations", data.syncope === "Yes" && "syncope"].filter(Boolean).join(", ") || "Cardiac screening request"}</span>
-</div>
+**Continuous Care Advice:**
+- **Lifestyle Modifications:** ${data.smoking === "Yes" ? "Quit smoking immediately - this is crucial for heart health" : "Continue avoiding smoking"}
+- **Regular Monitoring:** Keep track of blood pressure and heart rate
+- **Diet:** Heart-healthy diet low in salt, saturated fats, and rich in fruits and vegetables
+- **Exercise:** Regular moderate exercise as cleared by your doctor
+- **Medication Compliance:** Take prescribed medications exactly as directed
+- **Follow-up:** Keep all scheduled appointments with your healthcare providers
 
-<div class="summary-row">
-<span class="summary-label">Vitals:</span>
-<span class="summary-value">${data.bp ? `BP: ${data.bp}, ` : ""}${data.hr ? `HR: ${data.hr} BPM, ` : ""}${data.spo2 ? `SpO2: ${data.spo2}%` : ""}</span>
-</div>
+---
 
-<div class="summary-row">
-<span class="summary-label">Risk Factors:</span>
-<span class="summary-value">${[data.smoking === "Yes" && "smoking", data.diabetes === "Yes" && "diabetes", data.familyHistory === "Yes" && "family history", data.hypertensive === "Yes" && "hypertensive medications"].filter(Boolean).join(", ") || "None identified"}</span>
-</div>
+### **Doctor's Summary**
 
-<div class="summary-row">
-<span class="summary-label">Assessment:</span>
-<span class="summary-value">${riskScore >= 7 ? "High-risk presentation requiring urgent cardiology evaluation" : riskScore >= 5 ? "Moderate risk requiring timely cardiology consultation" : "Low to moderate risk, routine cardiology evaluation recommended"}. ${riskScore >= 6 ? "Multiple risk factors present warrant comprehensive cardiac workup." : "Standard cardiac screening protocols apply."}</span>
-</div>
+**Patient:** ${data.name}, ${data.age}-year-old ${data.gender} from ${data.city || "Unknown location"}.
 
-<div class="summary-row">
-<span class="summary-label">Recommended Plan:</span>
-<div class="plan-list">
-<div class="plan-item">1. ${urgency.includes("URGENT") ? "Urgent cardiology consultation within 24-48 hours" : "Cardiology consultation within 2-4 weeks"}</div>
-<div class="plan-item">2. Initial workup: ECG, Echocardiogram, basic metabolic panel</div>
-<div class="plan-item">3. ${riskScore >= 6 ? "Consider stress testing and extended monitoring" : "Standard diagnostic workup as per cardiologist recommendation"}</div>
-<div class="plan-item">4. Lifestyle counseling regarding ${[data.smoking === "Yes" && "smoking cessation", "cardiac risk reduction", "regular follow-up"].filter(Boolean).join(", ")}</div>
-</div>
-</div>
+**Presenting Complaint:** ${[data.chestPain === "Yes" && "chest pain", data.sob === "Yes" && "shortness of breath", data.fatigue === "Yes" && "fatigue", data.palpitations === "Yes" && "palpitations", data.syncope === "Yes" && "syncope"].filter(Boolean).join(", ") || "Cardiac screening request"}
 
-<div class="summary-note">
-<strong>Note:</strong> This assessment is based on provided information and should not replace professional medical evaluation. Seek immediate medical attention for any acute symptoms.
-</div>
-</div>
-</div>
-</div>
+**Vitals:** ${data.bp ? `BP: ${data.bp}, ` : ""}${data.hr ? `HR: ${data.hr} BPM, ` : ""}${data.spo2 ? `SpO2: ${data.spo2}%` : ""}
+
+**Risk Factors:** ${[data.smoking === "Yes" && "smoking", data.diabetes === "Yes" && "diabetes", data.familyHistory === "Yes" && "family history", data.hypertensive === "Yes" && "hypertensive medications"].filter(Boolean).join(", ") || "None identified"}
+
+**Assessment:** ${riskScore >= 7 ? "High-risk presentation requiring urgent cardiology evaluation" : riskScore >= 5 ? "Moderate risk requiring timely cardiology consultation" : "Low to moderate risk, routine cardiology evaluation recommended"}. ${riskScore >= 6 ? "Multiple risk factors present warrant comprehensive cardiac workup." : "Standard cardiac screening protocols apply."}
+
+**Recommended Plan:**
+1. ${urgency.includes("URGENT") ? "Urgent cardiology consultation within 24-48 hours" : "Cardiology consultation within 2-4 weeks"}
+2. Initial workup: ECG, Echocardiogram, basic metabolic panel
+3. ${riskScore >= 6 ? "Consider stress testing and extended monitoring" : "Standard diagnostic workup as per cardiologist recommendation"}
+4. Lifestyle counseling regarding ${[data.smoking === "Yes" && "smoking cessation", "cardiac risk reduction", "regular follow-up"].filter(Boolean).join(", ")}
+
+**Note:** This assessment is based on provided information and should not replace professional medical evaluation. Seek immediate medical attention for any acute symptoms.
     `;
 
     return {
