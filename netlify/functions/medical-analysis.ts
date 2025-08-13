@@ -229,7 +229,9 @@ export const handler: Handler = async (event) => {
 
     // Get API key from environment
     const API_KEY = process.env.GEMINI_API_KEY;
+    console.log("Environment variables:", Object.keys(process.env).filter(key => key.includes('GEMINI')));
     console.log("API Key available:", !!API_KEY);
+    console.log("API Key length:", API_KEY ? API_KEY.length : 0);
 
     // Try to call Gemini AI if available
     if (API_KEY) {
