@@ -30,19 +30,46 @@ export const handleMedicalAnalysis: RequestHandler = async (req, res) => {
     // Calculate risk factors
     let riskScore = 3; // Base risk
     let riskFactors = [];
-    
-    if (data.chestPain === "Yes") { riskScore += 2; riskFactors.push("Chest pain present"); }
-    if (data.sob === "Yes") { riskScore += 2; riskFactors.push("Shortness of breath"); }
-    if (data.syncope === "Yes") { riskScore += 2; riskFactors.push("History of fainting"); }
-    if (data.palpitations === "Yes") { riskScore += 1; riskFactors.push("Palpitations"); }
-    if (data.familyHistory === "Yes") { riskScore += 1; riskFactors.push("Family history of heart disease"); }
-    if (data.smoking === "Yes") { riskScore += 1; riskFactors.push("Smoking history"); }
-    if (data.diabetes === "Yes") { riskScore += 1; riskFactors.push("Diabetes/high sugar"); }
-    
+
+    if (data.chestPain === "Yes") {
+      riskScore += 2;
+      riskFactors.push("Chest pain present");
+    }
+    if (data.sob === "Yes") {
+      riskScore += 2;
+      riskFactors.push("Shortness of breath");
+    }
+    if (data.syncope === "Yes") {
+      riskScore += 2;
+      riskFactors.push("History of fainting");
+    }
+    if (data.palpitations === "Yes") {
+      riskScore += 1;
+      riskFactors.push("Palpitations");
+    }
+    if (data.familyHistory === "Yes") {
+      riskScore += 1;
+      riskFactors.push("Family history of heart disease");
+    }
+    if (data.smoking === "Yes") {
+      riskScore += 1;
+      riskFactors.push("Smoking history");
+    }
+    if (data.diabetes === "Yes") {
+      riskScore += 1;
+      riskFactors.push("Diabetes/high sugar");
+    }
+
     riskScore = Math.min(riskScore, 10); // Cap at 10
-    
-    const riskLevel = riskScore <= 3 ? "Low" : riskScore <= 6 ? "Moderate" : "High";
-    const urgency = riskScore >= 7 ? "URGENT" : riskScore >= 5 ? "Recommended within 2-4 weeks" : "Routine consultation recommended";
+
+    const riskLevel =
+      riskScore <= 3 ? "Low" : riskScore <= 6 ? "Moderate" : "High";
+    const urgency =
+      riskScore >= 7
+        ? "URGENT"
+        : riskScore >= 5
+          ? "Recommended within 2-4 weeks"
+          : "Routine consultation recommended";
 
     const professionalAnalysis = `
 **Disclaimer:** This is a clinical assistance tool and not a substitute for professional medical diagnosis. You must consult a qualified healthcare professional for any health concerns.
@@ -89,13 +116,13 @@ Hello ${data.name}, thank you for providing your information. Based on the detai
 **Risk Score: ${riskScore}/10 (${riskLevel} Risk)**
 
 **Primary Drivers of this Score:**
-${riskFactors.length > 0 ? riskFactors.map(factor => `- ${factor}`).join('\n') : '- No significant risk factors identified from the information provided'}
+${riskFactors.length > 0 ? riskFactors.map((factor) => `- ${factor}`).join("\n") : "- No significant risk factors identified from the information provided"}
 
 #### **2. Urgency for Cardiologist Consultation**
 
-**${urgency.includes('URGENT') ? 'YES, URGENT consultation is recommended' : 'YES, consultation with a cardiologist is recommended'} - ${urgency}**
+**${urgency.includes("URGENT") ? "YES, URGENT consultation is recommended" : "YES, consultation with a cardiologist is recommended"} - ${urgency}**
 
-${riskScore >= 7 ? 'The combination of symptoms suggests potential cardiac issues that require immediate evaluation.' : 'Based on the symptoms and risk factors, professional cardiac evaluation is advisable.'}
+${riskScore >= 7 ? "The combination of symptoms suggests potential cardiac issues that require immediate evaluation." : "Based on the symptoms and risk factors, professional cardiac evaluation is advisable."}
 
 #### **3. Suggested Next Steps & Diagnostic Tests**
 
@@ -106,7 +133,7 @@ Your first step should be to see a General Physician or a Cardiologist. They wil
 3. **Echocardiogram (ECHO):** Ultrasound of the heart to assess structure, chamber size, and valve function
 4. **Blood Tests:** Complete blood panel, lipid profile, and cardiac enzymes if indicated
 5. **Chest X-ray:** To evaluate heart size and lung condition
-${riskScore >= 6 ? '\n6. **Stress Test:** May be recommended based on symptoms\n7. **Holter Monitor:** 24-hour heart rhythm monitoring if palpitations are frequent' : ''}
+${riskScore >= 6 ? "\n6. **Stress Test:** May be recommended based on symptoms\n7. **Holter Monitor:** 24-hour heart rhythm monitoring if palpitations are frequent" : ""}
 
 #### **4. Possible Structural Heart Disease (SHD) Conditions**
 
@@ -116,22 +143,22 @@ Based on your profile, a doctor would investigate several possibilities:
 - **Cardiomyopathy:** Diseases of the heart muscle including hypertrophic, dilated, or restrictive types
 - **Congenital Defects:** Birth defects like atrial septal defect (ASD), ventricular septal defect (VSD)
 - **Coronary Artery Disease:** Blockages in heart arteries
-${data.familyHistory === 'Yes' ? '- **Genetic Cardiomyopathies:** Given family history, inherited heart conditions should be evaluated' : ''}
+${data.familyHistory === "Yes" ? "- **Genetic Cardiomyopathies:** Given family history, inherited heart conditions should be evaluated" : ""}
 
 #### **5. What to Tell Your Doctor**
 
 Be clear and specific. Create a list so you don't forget anything:
 
-- "I am here because I've been experiencing ${[data.chestPain === 'Yes' && 'chest pain', data.sob === 'Yes' && 'shortness of breath', data.palpitations === 'Yes' && 'palpitations', data.syncope === 'Yes' && 'fainting episodes'].filter(Boolean).join(', ') || 'concerns about my heart health'}."
+- "I am here because I've been experiencing ${[data.chestPain === "Yes" && "chest pain", data.sob === "Yes" && "shortness of breath", data.palpitations === "Yes" && "palpitations", data.syncope === "Yes" && "fainting episodes"].filter(Boolean).join(", ") || "concerns about my heart health"}."
 - Describe the symptoms in detail: when they occur, how long they last, what triggers them
 - "My current vital signs include blood pressure of ${data.bp}, heart rate of ${data.hr} BPM"
-- "${data.smoking === 'Yes' ? 'I am a smoker' : 'I do not smoke'} and ${data.alcohol === 'Yes' ? 'I consume alcohol' : 'I do not drink alcohol'}"
-- "${data.familyHistory === 'Yes' ? 'I have a family history of heart disease' : 'No known family history of heart disease'}"
+- "${data.smoking === "Yes" ? "I am a smoker" : "I do not smoke"} and ${data.alcohol === "Yes" ? "I consume alcohol" : "I do not drink alcohol"}"
+- "${data.familyHistory === "Yes" ? "I have a family history of heart disease" : "No known family history of heart disease"}"
 - Mention any medications you're currently taking
 
-#### **6. Cardiac Hospitals in ${data.city || 'Your Area'}, India**
+#### **6. Cardiac Hospitals in ${data.city || "Your Area"}, India**
 
-Here are types of facilities to look for in ${data.city || 'your city'}:
+Here are types of facilities to look for in ${data.city || "your city"}:
 
 1. **Government Medical Colleges:** Often have excellent cardiology departments with experienced doctors
 2. **Multi-specialty Private Hospitals:** Usually have advanced cardiac care units and latest equipment
@@ -150,7 +177,7 @@ Here are types of facilities to look for in ${data.city || 'your city'}:
 - Rapid or very irregular heartbeat with symptoms
 
 **Continuous Care Advice:**
-- **Lifestyle Modifications:** ${data.smoking === 'Yes' ? 'Quit smoking immediately - this is crucial for heart health' : 'Continue avoiding smoking'}
+- **Lifestyle Modifications:** ${data.smoking === "Yes" ? "Quit smoking immediately - this is crucial for heart health" : "Continue avoiding smoking"}
 - **Regular Monitoring:** Keep track of blood pressure and heart rate
 - **Diet:** Heart-healthy diet low in salt, saturated fats, and rich in fruits and vegetables
 - **Exercise:** Regular moderate exercise as cleared by your doctor
@@ -161,21 +188,21 @@ Here are types of facilities to look for in ${data.city || 'your city'}:
 
 ### **Doctor's Summary**
 
-**Patient:** ${data.name}, ${data.age}-year-old ${data.gender} from ${data.city || 'Unknown location'}.
+**Patient:** ${data.name}, ${data.age}-year-old ${data.gender} from ${data.city || "Unknown location"}.
 
-**Presenting Complaint:** ${[data.chestPain === 'Yes' && 'chest pain', data.sob === 'Yes' && 'shortness of breath', data.fatigue === 'Yes' && 'fatigue', data.palpitations === 'Yes' && 'palpitations', data.syncope === 'Yes' && 'syncope'].filter(Boolean).join(', ') || 'Cardiac screening request'}
+**Presenting Complaint:** ${[data.chestPain === "Yes" && "chest pain", data.sob === "Yes" && "shortness of breath", data.fatigue === "Yes" && "fatigue", data.palpitations === "Yes" && "palpitations", data.syncope === "Yes" && "syncope"].filter(Boolean).join(", ") || "Cardiac screening request"}
 
-**Vitals:** ${data.bp ? `BP: ${data.bp}, ` : ''}${data.hr ? `HR: ${data.hr} BPM, ` : ''}${data.spo2 ? `SpO2: ${data.spo2}%` : ''}
+**Vitals:** ${data.bp ? `BP: ${data.bp}, ` : ""}${data.hr ? `HR: ${data.hr} BPM, ` : ""}${data.spo2 ? `SpO2: ${data.spo2}%` : ""}
 
-**Risk Factors:** ${[data.smoking === 'Yes' && 'smoking', data.diabetes === 'Yes' && 'diabetes', data.familyHistory === 'Yes' && 'family history', data.hypertensive === 'Yes' && 'hypertensive medications'].filter(Boolean).join(', ') || 'None identified'}
+**Risk Factors:** ${[data.smoking === "Yes" && "smoking", data.diabetes === "Yes" && "diabetes", data.familyHistory === "Yes" && "family history", data.hypertensive === "Yes" && "hypertensive medications"].filter(Boolean).join(", ") || "None identified"}
 
-**Assessment:** ${riskScore >= 7 ? 'High-risk presentation requiring urgent cardiology evaluation' : riskScore >= 5 ? 'Moderate risk requiring timely cardiology consultation' : 'Low to moderate risk, routine cardiology evaluation recommended'}. ${riskScore >= 6 ? 'Multiple risk factors present warrant comprehensive cardiac workup.' : 'Standard cardiac screening protocols apply.'}
+**Assessment:** ${riskScore >= 7 ? "High-risk presentation requiring urgent cardiology evaluation" : riskScore >= 5 ? "Moderate risk requiring timely cardiology consultation" : "Low to moderate risk, routine cardiology evaluation recommended"}. ${riskScore >= 6 ? "Multiple risk factors present warrant comprehensive cardiac workup." : "Standard cardiac screening protocols apply."}
 
 **Recommended Plan:**
-1. ${urgency.includes('URGENT') ? 'Urgent cardiology consultation within 24-48 hours' : 'Cardiology consultation within 2-4 weeks'}
+1. ${urgency.includes("URGENT") ? "Urgent cardiology consultation within 24-48 hours" : "Cardiology consultation within 2-4 weeks"}
 2. Initial workup: ECG, Echocardiogram, basic metabolic panel
-3. ${riskScore >= 6 ? 'Consider stress testing and extended monitoring' : 'Standard diagnostic workup as per cardiologist recommendation'}
-4. Lifestyle counseling regarding ${[data.smoking === 'Yes' && 'smoking cessation', 'cardiac risk reduction', 'regular follow-up'].filter(Boolean).join(', ')}
+3. ${riskScore >= 6 ? "Consider stress testing and extended monitoring" : "Standard diagnostic workup as per cardiologist recommendation"}
+4. Lifestyle counseling regarding ${[data.smoking === "Yes" && "smoking cessation", "cardiac risk reduction", "regular follow-up"].filter(Boolean).join(", ")}
 
 **Note:** This assessment is based on provided information and should not replace professional medical evaluation. Seek immediate medical attention for any acute symptoms.
     `;
