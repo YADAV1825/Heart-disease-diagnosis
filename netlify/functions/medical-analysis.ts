@@ -347,11 +347,11 @@ ${riskScore >= 6 ? '6. <strong>Stress Test:</strong> May be recommended based on
 
 Based on your profile, a doctor would investigate several possibilities:
 
-- <strong>Valvular Heart Disease:</strong> Conditions affecting heart valves (mitral, aortic, tricuspid, pulmonary)
-- <strong>Cardiomyopathy:</strong> Diseases of the heart muscle including hypertrophic, dilated, or restrictive types
-- <strong>Congenital Defects:</strong> Birth defects like atrial septal defect (ASD), ventricular septal defect (VSD)
-- <strong>Coronary Artery Disease:</strong> Blockages in heart arteries
-${data.familyHistory === "Yes" ? "- <strong>Genetic Cardiomyopathies:</strong> Given family history, inherited heart conditions should be evaluated" : ""}
+- <strong>Valvular Heart Disease:</strong> Conditions affecting heart valves (mitral, aortic, tricuspid, pulmonary)<br>
+- <strong>Cardiomyopathy:</strong> Diseases of the heart muscle including hypertrophic, dilated, or restrictive types<br>
+- <strong>Congenital Defects:</strong> Birth defects like atrial septal defect (ASD), ventricular septal defect (VSD)<br>
+- <strong>Coronary Artery Disease:</strong> Blockages in heart arteries<br>
+${data.familyHistory === "Yes" ? "- <strong>Genetic Cardiomyopathies:</strong> Given family history, inherited heart conditions should be evaluated<br>" : ""}
 
 <h3 style="color: #059669; font-size: 18px; font-weight: bold; margin: 16px 0;">💬 5. What to Tell Your Doctor</h3>
 
