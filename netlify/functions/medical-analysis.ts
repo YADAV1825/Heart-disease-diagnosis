@@ -374,18 +374,18 @@ Here are types of facilities to look for in ${data.city || "your city"}:
 
 <em>Consult local medical directories or online resources for specific hospitals in your area.</em>
 
-#### **7. Alternative Screening for Rural/Low-Resource Settings**
+<h3 style="color: #ea580c; font-size: 18px; font-weight: bold; margin: 16px 0;">🌍 7. Alternative Screening for Rural/Low-Resource Settings</h3>
 
 If access to a cardiologist is difficult or delayed:
 
-- **Primary Care Doctor:** Can perform initial evaluation and refer appropriately
-- **ECG at Local Clinic:** Most basic health centers have ECG capability
-- **Telemedicine Consultation:** Many hospitals now offer remote cardiology consultations
-- **Mobile Health Camps:** Look out for cardiac screening camps in your area
+- <strong>Primary Care Doctor:</strong> Can perform initial evaluation and refer appropriately
+- <strong>ECG at Local Clinic:</strong> Most basic health centers have ECG capability
+- <strong>Telemedicine Consultation:</strong> Many hospitals now offer remote cardiology consultations
+- <strong>Mobile Health Camps:</strong> Look out for cardiac screening camps in your area
 
-#### **8. Red Flags & Continuous Care Advice**
+<h3 style="color: #dc2626; font-size: 18px; font-weight: bold; margin: 16px 0;">🚨 8. Red Flags & Continuous Care Advice</h3>
 
-**Red Flags: Seek IMMEDIATE emergency care if you experience:**
+<div style="color: #dc2626; font-weight: bold; margin: 12px 0;">Red Flags: Seek IMMEDIATE emergency care if you experience:</div>
 - Severe crushing chest pain lasting more than a few minutes
 - Chest pain with sweating, nausea, or shortness of breath
 - Sudden severe shortness of breath
@@ -393,13 +393,13 @@ If access to a cardiologist is difficult or delayed:
 - Severe dizziness with chest discomfort
 - Rapid or very irregular heartbeat with symptoms
 
-**Continuous Care Advice:**
-- **Lifestyle Modifications:** ${data.smoking === "Yes" ? "Quit smoking immediately - this is crucial for heart health" : "Continue avoiding smoking"}
-- **Regular Monitoring:** Keep track of blood pressure and heart rate
-- **Diet:** Heart-healthy diet low in salt, saturated fats, and rich in fruits and vegetables
-- **Exercise:** Regular moderate exercise as cleared by your doctor
-- **Medication Compliance:** Take prescribed medications exactly as directed
-- **Follow-up:** Keep all scheduled appointments with your healthcare providers
+<div style="color: #059669; font-weight: bold; margin: 12px 0;">Continuous Care Advice:</div>
+- <strong>Lifestyle Modifications:</strong> ${data.smoking === "Yes" ? "Quit smoking immediately - this is crucial for heart health" : "Continue avoiding smoking"}
+- <strong>Regular Monitoring:</strong> Keep track of blood pressure and heart rate
+- <strong>Diet:</strong> Heart-healthy diet low in salt, saturated fats, and rich in fruits and vegetables
+- <strong>Exercise:</strong> Regular moderate exercise as cleared by your doctor
+- <strong>Medication Compliance:</strong> Take prescribed medications exactly as directed
+- <strong>Follow-up:</strong> Keep all scheduled appointments with your healthcare providers
 
 ---
 
