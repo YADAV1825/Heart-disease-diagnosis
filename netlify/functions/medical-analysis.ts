@@ -336,12 +336,12 @@ ${riskScore >= 7 ? "The combination of symptoms suggests potential cardiac issue
 
 Your first step should be to see a General Physician or a Cardiologist. They will likely recommend the following tests:
 
-1. <strong>Clinical Examination:</strong> Physical examination including heart auscultation to listen for murmurs or irregular sounds
-2. <strong>Electrocardiogram (ECG/EKG):</strong> Records heart's electrical activity to detect rhythm abnormalities
-3. <strong>Echocardiogram (ECHO):</strong> Ultrasound of the heart to assess structure, chamber size, and valve function
-4. <strong>Blood Tests:</strong> Complete blood panel, lipid profile, and cardiac enzymes if indicated
-5. <strong>Chest X-ray:</strong> To evaluate heart size and lung condition
-${riskScore >= 6 ? '<br>6. <strong>Stress Test:</strong> May be recommended based on symptoms<br>7. <strong>Holter Monitor:</strong> 24-hour heart rhythm monitoring if palpitations are frequent' : ""}
+1. <strong>Clinical Examination:</strong> Physical examination including heart auscultation to listen for murmurs or irregular sounds<br>
+2. <strong>Electrocardiogram (ECG/EKG):</strong> Records heart's electrical activity to detect rhythm abnormalities<br>
+3. <strong>Echocardiogram (ECHO):</strong> Ultrasound of the heart to assess structure, chamber size, and valve function<br>
+4. <strong>Blood Tests:</strong> Complete blood panel, lipid profile, and cardiac enzymes if indicated<br>
+5. <strong>Chest X-ray:</strong> To evaluate heart size and lung condition<br>
+${riskScore >= 6 ? '6. <strong>Stress Test:</strong> May be recommended based on symptoms<br>7. <strong>Holter Monitor:</strong> 24-hour heart rhythm monitoring if palpitations are frequent<br>' : ""}
 
 <h3 style="color: #7c3aed; font-size: 18px; font-weight: bold; margin: 16px 0;">🏥 4. Possible Structural Heart Disease (SHD) Conditions</h3>
 
