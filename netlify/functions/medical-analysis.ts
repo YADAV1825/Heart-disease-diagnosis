@@ -1,5 +1,12 @@
 import type { Handler } from "@netlify/functions";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+
+// Import GoogleGenerativeAI with a try-catch for better error handling
+let GoogleGenerativeAI: any;
+try {
+  GoogleGenerativeAI = require("@google/generative-ai").GoogleGenerativeAI;
+} catch (error) {
+  console.error("Failed to import GoogleGenerativeAI:", error);
+}
 
 interface MedicalAnalysisRequest {
   name: string;
