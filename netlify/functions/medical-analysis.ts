@@ -332,26 +332,26 @@ ${riskFactors.length > 0 ? riskFactors.map((factor) => `- ${factor}`).join("\n")
 
 ${riskScore >= 7 ? "The combination of symptoms suggests potential cardiac issues that require immediate evaluation." : "Based on the symptoms and risk factors, professional cardiac evaluation is advisable."}
 
-#### **3. Suggested Next Steps & Diagnostic Tests**
+<h3 style="color: #0891b2; font-size: 18px; font-weight: bold; margin: 16px 0;">🔬 3. Suggested Next Steps & Diagnostic Tests</h3>
 
 Your first step should be to see a General Physician or a Cardiologist. They will likely recommend the following tests:
 
-1. **Clinical Examination:** Physical examination including heart auscultation to listen for murmurs or irregular sounds
-2. **Electrocardiogram (ECG/EKG):** Records heart's electrical activity to detect rhythm abnormalities
-3. **Echocardiogram (ECHO):** Ultrasound of the heart to assess structure, chamber size, and valve function
-4. **Blood Tests:** Complete blood panel, lipid profile, and cardiac enzymes if indicated
-5. **Chest X-ray:** To evaluate heart size and lung condition
-${riskScore >= 6 ? "\n6. **Stress Test:** May be recommended based on symptoms\n7. **Holter Monitor:** 24-hour heart rhythm monitoring if palpitations are frequent" : ""}
+1. <strong>Clinical Examination:</strong> Physical examination including heart auscultation to listen for murmurs or irregular sounds
+2. <strong>Electrocardiogram (ECG/EKG):</strong> Records heart's electrical activity to detect rhythm abnormalities
+3. <strong>Echocardiogram (ECHO):</strong> Ultrasound of the heart to assess structure, chamber size, and valve function
+4. <strong>Blood Tests:</strong> Complete blood panel, lipid profile, and cardiac enzymes if indicated
+5. <strong>Chest X-ray:</strong> To evaluate heart size and lung condition
+${riskScore >= 6 ? '<br>6. <strong>Stress Test:</strong> May be recommended based on symptoms<br>7. <strong>Holter Monitor:</strong> 24-hour heart rhythm monitoring if palpitations are frequent' : ""}
 
-#### **4. Possible Structural Heart Disease (SHD) Conditions**
+<h3 style="color: #7c3aed; font-size: 18px; font-weight: bold; margin: 16px 0;">🏥 4. Possible Structural Heart Disease (SHD) Conditions</h3>
 
 Based on your profile, a doctor would investigate several possibilities:
 
-- **Valvular Heart Disease:** Conditions affecting heart valves (mitral, aortic, tricuspid, pulmonary)
-- **Cardiomyopathy:** Diseases of the heart muscle including hypertrophic, dilated, or restrictive types
-- **Congenital Defects:** Birth defects like atrial septal defect (ASD), ventricular septal defect (VSD)
-- **Coronary Artery Disease:** Blockages in heart arteries
-${data.familyHistory === "Yes" ? "- **Genetic Cardiomyopathies:** Given family history, inherited heart conditions should be evaluated" : ""}
+- <strong>Valvular Heart Disease:</strong> Conditions affecting heart valves (mitral, aortic, tricuspid, pulmonary)
+- <strong>Cardiomyopathy:</strong> Diseases of the heart muscle including hypertrophic, dilated, or restrictive types
+- <strong>Congenital Defects:</strong> Birth defects like atrial septal defect (ASD), ventricular septal defect (VSD)
+- <strong>Coronary Artery Disease:</strong> Blockages in heart arteries
+${data.familyHistory === "Yes" ? "- <strong>Genetic Cardiomyopathies:</strong> Given family history, inherited heart conditions should be evaluated" : ""}
 
 #### **5. What to Tell Your Doctor**
 
