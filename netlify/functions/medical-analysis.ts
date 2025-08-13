@@ -194,16 +194,16 @@ export const handler: Handler = async (event) => {
     return {
       statusCode: 405,
       headers,
-      body: JSON.stringify({ 
-        success: false, 
-        error: "Method Not Allowed" 
+      body: JSON.stringify({
+        success: false,
+        error: "Method Not Allowed",
       }),
     };
   }
 
   try {
     console.log("Netlify Function: Received medical analysis request");
-    
+
     // Parse request body
     const data: MedicalAnalysisRequest = JSON.parse(event.body || "{}");
 
@@ -230,11 +230,11 @@ export const handler: Handler = async (event) => {
         console.log("Attempting to call Gemini AI...");
         const genAI = new GoogleGenerativeAI(API_KEY);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-        
+
         const prompt = buildPrompt(data);
         const result = await model.generateContent(prompt);
         const analysisText = result.response.text();
-        
+
         console.log("Gemini AI response received successfully");
 
         return {
@@ -250,7 +250,9 @@ export const handler: Handler = async (event) => {
         console.log("Falling back to sample analysis due to AI error");
       }
     } else {
-      console.log("Using fallback analysis - API key not available in environment");
+      console.log(
+        "Using fallback analysis - API key not available in environment",
+      );
     }
 
     // Fallback analysis if AI fails or API key missing
@@ -360,7 +362,6 @@ Consult local medical directories for:
         analysis: mockAnalysis,
       }),
     };
-
   } catch (error) {
     console.error("Netlify Function Error:", error);
     return {
