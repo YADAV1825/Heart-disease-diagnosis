@@ -71,7 +71,7 @@ export default function Index() {
   const handleAnalysis = async () => {
     setIsAnalyzing(true);
     try {
-      const response = await fetch("/api/medical-analysis", {
+      const response = await fetch("/.netlify/functions/medical-analysis", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
