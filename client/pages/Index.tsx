@@ -135,10 +135,13 @@ export default function Index() {
       let text = tmp.textContent || tmp.innerText || "";
 
       // Remove emojis and special characters
-      text = text.replace(/[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, '');
+      text = text.replace(
+        /[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu,
+        "",
+      );
 
       // Clean up extra spaces and line breaks
-      text = text.replace(/\s+/g, ' ').trim();
+      text = text.replace(/\s+/g, " ").trim();
 
       return text;
     };
@@ -190,7 +193,9 @@ export default function Index() {
     const cleanAnalysis = cleanText(analysis);
 
     // Split into sections and format
-    const sections = cleanAnalysis.split(/(?=\d+\.\s|Disclaimer:|Doctor's Summary)/);
+    const sections = cleanAnalysis.split(
+      /(?=\d+\.\s|Disclaimer:|Doctor's Summary)/,
+    );
 
     doc.setFontSize(9);
     doc.setTextColor(0, 0, 0);
@@ -236,7 +241,9 @@ export default function Index() {
     }
 
     // Save PDF
-    doc.save(`${formData.name || "Patient"}_SHD_Report_${new Date().toISOString().split("T")[0]}.pdf`);
+    doc.save(
+      `${formData.name || "Patient"}_SHD_Report_${new Date().toISOString().split("T")[0]}.pdf`,
+    );
   };
 
   const toggleTheme = () => {
