@@ -458,36 +458,61 @@ If access to a cardiologist is difficult or delayed:
 </div>
 </div>
 
-<div class="continuous-care">
-<h4 class="continuous-care-title">Continuous Care Advice:</h4>
-- **Lifestyle Modifications:** ${data.smoking === "Yes" ? "Quit smoking immediately - this is crucial for heart health" : "Continue avoiding smoking"}
-- **Regular Monitoring:** Keep track of blood pressure and heart rate
-- **Diet:** Heart-healthy diet low in salt, saturated fats, and rich in fruits and vegetables
-- **Exercise:** Regular moderate exercise as cleared by your doctor
-- **Medication Compliance:** Take prescribed medications exactly as directed
-- **Follow-up:** Keep all scheduled appointments with your healthcare providers
+<div class="continuous-care-list">
+<div class="care-item"><span class="care-type">Lifestyle Modifications:</span> <span class="care-description">${data.smoking === "Yes" ? "Quit smoking immediately - this is crucial for heart health" : "Continue avoiding smoking"}</span></div>
+<div class="care-item"><span class="care-type">Regular Monitoring:</span> <span class="care-description">Keep track of blood pressure and heart rate</span></div>
+<div class="care-item"><span class="care-type">Diet:</span> <span class="care-description">Heart-healthy diet low in salt, saturated fats, and rich in fruits and vegetables</span></div>
+<div class="care-item"><span class="care-type">Exercise:</span> <span class="care-description">Regular moderate exercise as cleared by your doctor</span></div>
+<div class="care-item"><span class="care-type">Medication Compliance:</span> <span class="care-description">Take prescribed medications exactly as directed</span></div>
+<div class="care-item"><span class="care-type">Follow-up:</span> <span class="care-description">Keep all scheduled appointments with your healthcare providers</span></div>
+</div>
+</div>
+</div>
 
----
+<div class="doctor-summary-section">
+<h3 class="section-title">👨‍⚕️ Doctor's Summary</h3>
+<div class="summary-card">
+<div class="summary-row">
+<span class="summary-label">Patient:</span>
+<span class="summary-value">${data.name}, ${data.age}-year-old ${data.gender} from ${data.city || "Unknown location"}</span>
+</div>
 
-### **Doctor's Summary**
+<div class="summary-row">
+<span class="summary-label">Presenting Complaint:</span>
+<span class="summary-value">${[data.chestPain === "Yes" && "chest pain", data.sob === "Yes" && "shortness of breath", data.fatigue === "Yes" && "fatigue", data.palpitations === "Yes" && "palpitations", data.syncope === "Yes" && "syncope"].filter(Boolean).join(", ") || "Cardiac screening request"}</span>
+</div>
 
-**Patient:** ${data.name}, ${data.age}-year-old ${data.gender} from ${data.city || "Unknown location"}.
+<div class="summary-row">
+<span class="summary-label">Vitals:</span>
+<span class="summary-value">${data.bp ? `BP: ${data.bp}, ` : ""}${data.hr ? `HR: ${data.hr} BPM, ` : ""}${data.spo2 ? `SpO2: ${data.spo2}%` : ""}</span>
+</div>
 
-**Presenting Complaint:** ${[data.chestPain === "Yes" && "chest pain", data.sob === "Yes" && "shortness of breath", data.fatigue === "Yes" && "fatigue", data.palpitations === "Yes" && "palpitations", data.syncope === "Yes" && "syncope"].filter(Boolean).join(", ") || "Cardiac screening request"}
+<div class="summary-row">
+<span class="summary-label">Risk Factors:</span>
+<span class="summary-value">${[data.smoking === "Yes" && "smoking", data.diabetes === "Yes" && "diabetes", data.familyHistory === "Yes" && "family history", data.hypertensive === "Yes" && "hypertensive medications"].filter(Boolean).join(", ") || "None identified"}</span>
+</div>
 
-**Vitals:** ${data.bp ? `BP: ${data.bp}, ` : ""}${data.hr ? `HR: ${data.hr} BPM, ` : ""}${data.spo2 ? `SpO2: ${data.spo2}%` : ""}
+<div class="summary-row">
+<span class="summary-label">Assessment:</span>
+<span class="summary-value">${riskScore >= 7 ? "High-risk presentation requiring urgent cardiology evaluation" : riskScore >= 5 ? "Moderate risk requiring timely cardiology consultation" : "Low to moderate risk, routine cardiology evaluation recommended"}. ${riskScore >= 6 ? "Multiple risk factors present warrant comprehensive cardiac workup." : "Standard cardiac screening protocols apply."}</span>
+</div>
 
-**Risk Factors:** ${[data.smoking === "Yes" && "smoking", data.diabetes === "Yes" && "diabetes", data.familyHistory === "Yes" && "family history", data.hypertensive === "Yes" && "hypertensive medications"].filter(Boolean).join(", ") || "None identified"}
+<div class="summary-row">
+<span class="summary-label">Recommended Plan:</span>
+<div class="plan-list">
+<div class="plan-item">1. ${urgency.includes("URGENT") ? "Urgent cardiology consultation within 24-48 hours" : "Cardiology consultation within 2-4 weeks"}</div>
+<div class="plan-item">2. Initial workup: ECG, Echocardiogram, basic metabolic panel</div>
+<div class="plan-item">3. ${riskScore >= 6 ? "Consider stress testing and extended monitoring" : "Standard diagnostic workup as per cardiologist recommendation"}</div>
+<div class="plan-item">4. Lifestyle counseling regarding ${[data.smoking === "Yes" && "smoking cessation", "cardiac risk reduction", "regular follow-up"].filter(Boolean).join(", ")}</div>
+</div>
+</div>
 
-**Assessment:** ${riskScore >= 7 ? "High-risk presentation requiring urgent cardiology evaluation" : riskScore >= 5 ? "Moderate risk requiring timely cardiology consultation" : "Low to moderate risk, routine cardiology evaluation recommended"}. ${riskScore >= 6 ? "Multiple risk factors present warrant comprehensive cardiac workup." : "Standard cardiac screening protocols apply."}
-
-**Recommended Plan:**
-1. ${urgency.includes("URGENT") ? "Urgent cardiology consultation within 24-48 hours" : "Cardiology consultation within 2-4 weeks"}
-2. Initial workup: ECG, Echocardiogram, basic metabolic panel
-3. ${riskScore >= 6 ? "Consider stress testing and extended monitoring" : "Standard diagnostic workup as per cardiologist recommendation"}
-4. Lifestyle counseling regarding ${[data.smoking === "Yes" && "smoking cessation", "cardiac risk reduction", "regular follow-up"].filter(Boolean).join(", ")}
-
-**Note:** This assessment is based on provided information and should not replace professional medical evaluation. Seek immediate medical attention for any acute symptoms.
+<div class="summary-note">
+<strong>Note:</strong> This assessment is based on provided information and should not replace professional medical evaluation. Seek immediate medical attention for any acute symptoms.
+</div>
+</div>
+</div>
+</div>
     `;
 
     return {
