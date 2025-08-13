@@ -278,13 +278,15 @@ export const handler: Handler = async (event) => {
           : "Routine consultation recommended";
 
     const professionalAnalysis = `
-**Disclaimer:** This is a clinical assistance tool and not a substitute for professional medical diagnosis. You must consult a qualified healthcare professional for any health concerns.
+<div style="color: #dc2626; font-weight: bold; padding: 12px; background-color: #fef2f2; border-radius: 8px; margin-bottom: 16px;">
+⚠️ Disclaimer: This is a clinical assistance tool and not a substitute for professional medical diagnosis. You must consult a qualified healthcare professional for any health concerns.
+</div>
 
-### **Preliminary SHD Assessment for ${data.name}**
+<h2 style="color: #0891b2; font-size: 24px; font-weight: bold; margin: 20px 0;">🏥 Preliminary SHD Assessment for ${data.name}</h2>
 
 Hello ${data.name}, thank you for providing your information. Based on the details you've shared about your symptoms, lifestyle, and vitals, here is a detailed assessment.
 
-**Patient Information:**
+<h3 style="color: #059669; font-size: 18px; font-weight: bold; margin: 16px 0;">👤 Patient Information:</h3>
 - Name: ${data.name}
 - Age: ${data.age} years (${data.ageGroup})
 - Gender: ${data.gender}
